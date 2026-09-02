@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop All Products | Maurya Collection</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Shop authentic contemporary Indian clothing items from Maurya Collection. Men's Co-ords, Cotton Kurtis, Indo-Western Festive Sets & Youth Streetwear." />
+  <meta name="keywords" content="mens coord sets, cotton kurtis, festive wear, online clothing store, Maurya Collection" />
+  <meta name="author" content="Maurya Collection" />
+  <link rel="canonical" href="https://mauryacollection.com/shop.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shop All Products | Maurya Collection" />
+  <meta property="og:description" content="Explore our collection of authentic Indian and contemporary garments." />
+  <meta property="og:image" content="../../assets/logo/maurya-collection-logo.png" />
+  <meta property="og:url" content="https://mauryacollection.com/shop.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../../public/favicon/maurya-collection-icon.svg" />
+  <link rel="shortcut icon" href="../../public/favicon/maurya-collection-icon.svg" />
+  <link rel="apple-touch-icon" href="../../public/images/brand/maurya-collection-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../src/css/main.css" />
+  <link rel="stylesheet" href="../../src/css/shop.css" />
+</head>
+<body style="background: #f8fafc; padding-bottom: 90px;">
+
+  <!-- ===== LUXURY LOADER / SPLASH SCREEN ===== -->
+  <div class="mc-loader-screen" id="mcLoader" role="status" aria-label="Loading Maurya Collection">
+    <div class="mc-glow-aura"></div>
+    <div class="mc-loader-container">
+      <div class="mc-emblem-stage">
+        <div class="mc-ring-outer"></div>
+        <div class="mc-ring-middle"></div>
+        <div class="mc-emblem-disc">
+          <img src="../../public/images/brand/maurya-collection-icon.png" alt="Maurya Collection Emblem" class="mc-emblem-img" width="68" height="68" />
+        </div>
+      </div>
+      <h2 class="mc-brand-heading">Maurya Collection</h2>
+      <span class="mc-brand-sub">Apparel &amp; Ethnic Wear</span>
+      <div class="mc-progress-track">
+        <div class="mc-progress-bar"></div>
+      </div>
+      <span class="mc-loader-status" id="mcLoaderStatus">Curating Collection...</span>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar" id="announceBar" role="banner">
+    <div class="announce-inner">
+      <span>Free standard shipping on orders above ₹999 across India</span>
+      <span class="sep">•</span>
+      <span>Use code <strong>MAURYA10</strong> for 10% off</span>
+    </div>
+    <button class="announce-close" id="announceClose" aria-label="Close announcement">&times;</button>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a href="../../index.html#home" class="nav-logo" aria-label="Maurya Collection">
+          <img src="../../public/images/brand/maurya-collection-logo.png" alt="Maurya Collection" class="nav-logo-img" height="38" />
+        </a>
+      </div>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <button class="nav-close" id="navClose" aria-label="Close navigation menu">&times;</button>
+        <a href="../../index.html#home" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop All</a>
+        <a href="../../index.html#collections" class="nav-link">Categories</a>
+        <a href="../../index.html#about" class="nav-link">Our Story</a>
+        <a href="../../index.html#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="shop.html" class="nav-icon-btn orders-icon-btn" aria-label="Orders" title="Orders">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </a>
+        <button class="nav-icon-btn cart-icon-btn" id="cartOpen" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+        <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20have%20an%20enquiry" class="nav-icon-btn account-icon-btn" aria-label="Account & Support" title="Account & Support" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <!-- TOP HEADER (BREADCRUMB & COUNT) -->
+  <div class="shop-top-header">
+    <nav class="breadcrumbs" style="margin-bottom: 0;">
+      <a href="../../index.html">Home</a>
+      <span>&rsaquo;</span>
+      <span class="current">All Products</span>
+    </nav>
+    <span class="shop-total-badge" id="shopTotalCount">158 Products</span>
+  </div>
+
+  <!-- STITCH CATEGORY QUICK-NAV TABS -->
+  <nav class="shop-category-nav" id="shopCategoryNav" aria-label="Product categories"></nav>
+
+  <!-- MAIN PRODUCT CONTAINER (SECTION-BY-SECTION) -->
+  <main style="max-width: 1280px; margin: 0 auto; padding: 14px 12px 60px;" role="main">
+    <div id="shopProductGrid" aria-label="Product collections">
+      <!-- Grouped category sections rendered dynamically by shop.js -->
+    </div>
+  </main>
+
+  <!-- ================================================
+       BOTTOM STICKY BAR: [⇅ Sort by] & [⚲ Filter] (MATCHING SCREENSHOT)
+       ================================================ -->
+  <div class="bottom-sticky-bar" role="toolbar" aria-label="Product sorting and filtering">
+    <button class="bottom-bar-btn" id="btnOpenSort" aria-label="Open sorting options">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+      <span>Sort by</span>
+    </button>
+    <button class="bottom-bar-btn" id="btnOpenFilter" aria-label="Open filter options">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+      <span>Filter</span>
+    </button>
+  </div>
+
+  <!-- ================================================
+       FLOATING ACTION BUTTONS (MATCHING SCREENSHOT)
+       ================================================ -->
+  <div class="floating-actions-container">
+    <!-- Left: WhatsApp Floating Button -->
+    <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20would%20like%20to%20enquire%20about%20your%20products" class="whatsapp-float-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <div class="whatsapp-pulse-ring" aria-hidden="true"></div>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- Right: Floating Search & Cart Buttons (Matching Screenshot) -->
+    <div class="float-right-group">
+      <button class="float-circle-btn" id="floatSearchBtn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="float-circle-btn" id="floatCartBtn" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="float-cart-badge" id="floatCartBadge">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================================================
+       SORT BOTTOM SHEET MODAL
+       ================================================ -->
+  <div class="bottom-sheet-overlay" id="sheetOverlay" aria-hidden="true"></div>
+
+  <div class="bottom-sheet" id="sortBottomSheet" role="dialog" aria-modal="true" aria-labelledby="sortSheetTitle">
+    <div class="sheet-handle-bar"></div>
+    <div class="sheet-header">
+      <h3 class="sheet-title" id="sortSheetTitle">Sort by</h3>
+      <button class="sheet-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="sort-options-list">
+      <div class="sort-option-item active" data-sort="featured">
+        <span>Featured / Popular</span>
+        <span>✓</span>
+      </div>
+      <div class="sort-option-item" data-sort="price-low">
+        <span>Price: Low to High</span>
+        <span>&rarr;</span>
+      </div>
+      <div class="sort-option-item" data-sort="price-high">
+        <span>Price: High to Low</span>
+        <span>&rarr;</span>
+      </div>
+      <div class="sort-option-item" data-sort="rating">
+        <span>Customer Rating (4.9+ ★)</span>
+        <span>★</span>
+      </div>
+      <div class="sort-option-item" data-sort="newest">
+        <span>New Arrivals</span>
+        <span>✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+       FILTER BOTTOM SHEET MODAL
+       ================================================ -->
+  <div class="bottom-sheet" id="filterBottomSheet" role="dialog" aria-modal="true" aria-labelledby="filterSheetTitle">
+    <div class="sheet-handle-bar"></div>
+    <div class="sheet-header">
+      <h3 class="sheet-title" id="filterSheetTitle">Filter Products</h3>
+      <button class="sheet-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="filter-sheet-body">
+      <div class="filter-block">
+        <h4 class="filter-block-title">Category</h4>
+        <div class="filter-chips-grid">
+          <button class="filter-chip-btn active" data-filter-cat="all">All Items (158)</button>
+          <button class="filter-chip-btn" data-filter-cat="mens-coords">Men's Co-Ords (9)</button>
+          <button class="filter-chip-btn" data-filter-cat="womens-kurtis">Daily Kurtis (8)</button>
+          <button class="filter-chip-btn" data-filter-cat="womens-festive">Festive Shrugs (5)</button>
+          <button class="filter-chip-btn" data-filter-cat="womens-suits">Designer Suits (12)</button>
+          <button class="filter-chip-btn" data-filter-cat="sherwani-sets">Sherwani Sets (6)</button>
+          <button class="filter-chip-btn" data-filter-cat="kids-collection">Kids Collection (29)</button>
+          <button class="filter-chip-btn" data-filter-cat="luxury-line">Luxury Line (11)</button>
+          <button class="filter-chip-btn" data-filter-cat="ethnic-kurtas">Ethnic Kurtas (17)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay-bg" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping bag" aria-modal="true">
+    <div class="cart-head">
+      <h3>Your Bag <span id="cartItemCount">(0)</span></h3>
+      <button class="cart-close-btn" id="cartClose" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot" id="cartFoot">
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div class="summary-row"><span>Standard Delivery</span><span class="free-del" id="cartDelivery">FREE</span></div>
+        <div class="summary-row total-row"><span>Total Amount</span><span id="cartTotal">₹0</span></div>
+      </div>
+      <button class="btn-primary btn-full">Proceed to Checkout &rarr;</button>
+      <p class="cart-secure-note">Encrypted &amp; secure checkout</p>
+    </div>
+  </aside>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../assets/js/products-data.js"></script>
+  <script src="../../assets/js/shop.js"></script>
+  <script src="../../assets/js/analytics.js"></script>
+</body>
+</html>

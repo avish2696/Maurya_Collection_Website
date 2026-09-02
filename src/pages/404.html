@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | Maurya Collection</title>
+  <meta name="description" content="The requested page could not be found. Return to Maurya Collection to explore our loungewear, cotton kurtis, and festive fusion wear." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #701a2b;
+      --red-dark: #4a0e1a;
+      --gold: #b38b3f;
+      --gold-light: #dfc38a;
+      --white: #ffffff;
+      --off-white: #faf7f2;
+      --charcoal: #1a1f24;
+      --gray: #606870;
+      --border: #e4ded5;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-404 {
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 580px;
+      width: 100%;
+    }
+
+    .error-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      padding: 4px;
+    }
+
+    .error-logo img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .error-badge {
+      display: inline-block;
+      background: rgba(179, 139, 63, 0.12);
+      border: 1px solid rgba(179, 139, 63, 0.3);
+      color: #8c6820;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .error-number {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(84px, 18vw, 150px);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .error-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 12px 0 10px;
+    }
+
+    .error-desc {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .btn-primary:hover { background: var(--red-dark); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--charcoal);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-ghost:hover { background: var(--white); border-color: var(--charcoal); }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .quick-link {
+      font-size: 0.8rem;
+      color: var(--gray);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .quick-link:hover { color: var(--red); border-color: var(--red); }
+
+    .error-footer {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    .error-footer a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .error-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <main class="page-404" role="main">
+
+    <div class="error-logo">
+      <img src="../assets/logo/maurya-collection-icon.png" alt="Maurya Collection" />
+    </div>
+
+    <span class="error-badge">Page Not Found</span>
+
+    <div class="error-number" aria-label="Error 404">404</div>
+
+    <h1 class="error-title">We couldn't find that page</h1>
+
+    <p class="error-desc">
+      The page you're looking for may have been moved or doesn't exist. Let's get you back to our clothing collections.
+    </p>
+
+    <div class="error-actions">
+      <a href="../index.html" class="btn-primary">Return to Home</a>
+      <a href="../index.html#collections" class="btn-ghost">View Categories</a>
+    </div>
+
+    <nav class="quick-links" aria-label="Quick navigation">
+      <a href="../index.html#home" class="quick-link">Home</a>
+      <a href="../index.html#cat-mens-coords" class="quick-link">Men's Co-Ords</a>
+      <a href="../index.html#cat-womens-kurtis" class="quick-link">Cotton Kurtis</a>
+      <a href="../index.html#cat-festive-fusion" class="quick-link">Festive Sets</a>
+      <a href="../index.html#contact" class="quick-link">Contact</a>
+    </nav>
+
+    <p class="error-footer">
+      Need help? <a href="../index.html#contact">Contact Support</a> or
+      <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20need%20help" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+    </p>
+
+  </main>
+
+</body>
+</html>

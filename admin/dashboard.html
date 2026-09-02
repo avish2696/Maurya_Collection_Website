@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Maurya Collection</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="../assets/favicon/maurya-collection-icon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0102;
+      --surface: #160305;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(201,168,76,0.2);
+      --gold: #c9a84c;
+      --gold-light: #f7e7a9;
+      --red: #8B0020;
+      --text: #f0ebe3;
+      --muted: rgba(240,235,227,0.5);
+      --success: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --sidebar-w: 240px;
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; }
+
+    /* ── Sidebar ─────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w); min-height: 100vh; background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; z-index: 200;
+    }
+    .sidebar-logo {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sidebar-logo img { width: 36px; height: 36px; object-fit: contain; }
+    .sidebar-logo-text h2 { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; }
+    .sidebar-logo-text span { font-size: 0.65rem; color: var(--gold); letter-spacing: 0.12em; font-weight: 600; }
+
+    .sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      cursor: pointer; color: var(--muted); font-size: 0.85rem; font-weight: 500;
+      transition: all 0.18s; border: none; background: none; text-align: left;
+      width: 100%;
+    }
+    .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .nav-item:hover { background: rgba(201,168,76,0.08); color: #fff; }
+    .nav-item.active { background: rgba(139,0,32,0.25); color: var(--gold-light); border: 1px solid rgba(139,0,32,0.4); }
+    .sidebar-footer {
+      padding: 16px; border-top: 1px solid var(--border);
+    }
+    .logout-btn {
+      width: 100%; padding: 10px; border-radius: 10px;
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25);
+      color: #fca5a5; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .logout-btn:hover { background: rgba(239,68,68,0.2); }
+
+    /* ── Main area ───────────────────────────────────── */
+    .main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+    .topbar {
+      padding: 18px 28px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(22,3,5,0.8); backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .topbar-badge {
+      padding: 5px 12px; border-radius: 99px;
+      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .live-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--success);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.85)} }
+
+    .content { padding: 28px; flex: 1; }
+
+    /* ── Sections (tab panels) ───────────────────────── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── Stat Cards ──────────────────────────────────── */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 20px;
+    }
+    .stat-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 10px; }
+    .stat-value { font-size: 1.9rem; font-weight: 800; color: #fff; line-height: 1; }
+    .stat-sub { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+    .stat-trend { font-size: 0.72rem; font-weight: 700; margin-top: 4px; }
+    .stat-trend.up { color: var(--success); }
+    .stat-trend.down { color: var(--danger); }
+
+    /* ── Cards ───────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+    .card-title { font-size: 0.85rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* ── Chart wrapper ───────────────────────────────── */
+    .chart-wrap { position: relative; height: 280px; }
+
+    /* ── Tables ──────────────────────────────────────── */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .data-table th { padding: 10px 14px; text-align: left; color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; color: var(--text); }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* ── Stock badges ────────────────────────────────── */
+    .badge { padding: 3px 10px; border-radius: 99px; font-size: 0.68rem; font-weight: 700; }
+    .badge-ok { background: rgba(34,197,94,0.12); color: var(--success); }
+    .badge-low { background: rgba(245,158,11,0.12); color: var(--warn); }
+    .badge-out { background: rgba(239,68,68,0.12); color: var(--danger); }
+
+    /* ── Visitor table ───────────────────────────────── */
+    .visitor-row td:first-child { font-family: monospace; font-size: 0.75rem; color: var(--muted); }
+    .page-chip { display: inline-block; padding: 2px 8px; border-radius: 6px; background: rgba(201,168,76,0.1); color: var(--gold); font-size: 0.7rem; font-weight: 600; }
+
+    /* ── Forms ───────────────────────────────────────── */
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 0.72rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 10px 14px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: #fff; font-size: 0.88rem;
+      font-family: inherit; outline: none; transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-select option { background: #1a0306; }
+    .color-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .color-swatch {
+      width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+      border: 2px solid transparent; transition: all 0.15s;
+    }
+    .color-swatch.selected { border-color: #fff; transform: scale(1.1); }
+    .btn-primary {
+      padding: 11px 24px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      border: none; color: #fff; font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-danger {
+      padding: 8px 16px; border-radius: 8px;
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+      color: #fca5a5; font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .btn-danger:hover { background: rgba(239,68,68,0.2); }
+    .btn-sm {
+      padding: 5px 12px; border-radius: 7px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+      color: var(--gold); font-size: 0.72rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .btn-sm:hover { background: rgba(201,168,76,0.2); }
+
+    /* ── Toggle switch ───────────────────────────────── */
+    .toggle-wrap { display: flex; align-items: center; gap: 12px; }
+    .toggle { position: relative; width: 48px; height: 26px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; inset: 0; border-radius: 99px;
+      background: rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s;
+    }
+    .toggle-slider::before {
+      content: ''; position: absolute; width: 20px; height: 20px;
+      left: 3px; top: 3px; border-radius: 50%;
+      background: #fff; transition: 0.3s;
+    }
+    .toggle input:checked + .toggle-slider { background: var(--gold); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(22px); }
+
+    /* ── Banner Preview ──────────────────────────────── */
+    .banner-preview {
+      border-radius: 10px; padding: 12px 20px; text-align: center;
+      font-size: 0.85rem; font-weight: 600; margin-top: 14px;
+      transition: all 0.3s;
+    }
+    .preview-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+
+    /* ── Success toast ───────────────────────────────── */
+    #adminToast {
+      position: fixed; bottom: 28px; right: 28px;
+      padding: 14px 22px; border-radius: 12px;
+      background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+      color: #86efac; font-size: 0.85rem; font-weight: 600;
+      transform: translateY(20px); opacity: 0;
+      transition: all 0.3s; pointer-events: none; z-index: 9999;
+    }
+    #adminToast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── Inventory stock input ───────────────────────── */
+    .stock-input {
+      width: 70px; padding: 5px 8px; text-align: center;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 7px; color: #fff; font-size: 0.82rem; font-family: inherit; outline: none;
+    }
+    .stock-input:focus { border-color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="../assets/logo/maurya-collection-icon.png" alt="MC" onerror="this.style.display='none'" />
+    <div class="sidebar-logo-text">
+      <h2>Maurya Admin</h2>
+      <span>Control Panel</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button class="nav-item active" data-panel="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Overview
+    </button>
+    <button class="nav-item" data-panel="banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4z"/><path d="M4 12h8v4H4z"/><path d="M4 20h16"/></svg>
+      Banners & Deals
+    </button>
+    <button class="nav-item" data-panel="visitors">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Visitors
+    </button>
+    <button class="nav-item" data-panel="inventory">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      Inventory
+    </button>
+    <button class="nav-item" data-panel="sales">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Sales & Revenue
+    </button>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" id="logoutBtn">Sign Out</button>
+  </div>
+</aside>
+
+<!-- ── MAIN AREA ────────────────────────────────────────────── -->
+<div class="main">
+  <header class="topbar">
+    <span class="topbar-title" id="panelTitle">Dashboard Overview</span>
+    <div class="topbar-right">
+      <div class="live-dot"></div>
+      <span class="topbar-badge">Admin</span>
+      <a href="../index.html" style="color:var(--muted);font-size:0.78rem;text-decoration:none;padding:6px 12px;border:1px solid var(--border);border-radius:8px;" target="_blank">View Site →</a>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: Overview
+    ══════════════════════════════════════════════ -->
+    <section class="panel active" id="panel-overview">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Visits Today</div>
+          <div class="stat-value" id="statTodayVisits">—</div>
+          <div class="stat-sub">Page views today</div>
+          <div class="stat-trend up" id="statTodayTrend"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Unique Visitors</div>
+          <div class="stat-value" id="statUniqueVisits">—</div>
+          <div class="stat-sub">New sessions today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="statProducts">—</div>
+          <div class="stat-sub">In catalogue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Low Stock Items</div>
+          <div class="stat-value" id="statLowStock" style="color:var(--warn)">—</div>
+          <div class="stat-sub">Need restocking</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Banner Status</div>
+          <div class="stat-value" id="statBanner" style="font-size:1rem;margin-top:6px;">—</div>
+          <div class="stat-sub">Active promotion</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">All-time Page Views</div>
+          <div class="stat-value" id="statAllVisits">—</div>
+          <div class="stat-sub">Across all sessions</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Weekly Traffic
+          </div>
+          <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Traffic Sources
+          </div>
+          <div class="chart-wrap"><canvas id="sourceChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: Banners & Deals
+    ══════════════════════════════════════════════ -->
+    <section class="panel" id="panel-banner">
+      <div class="grid-2" style="gap:24px;align-items:start;">
+
+        <!-- Announcement Bar Editor -->
+        <div class="card">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4z"/></svg>
+            Announcement Bar
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Active</label>
+            <div class="toggle-wrap">
+              <label class="toggle"><input type="checkbox" id="bannerActive" /><span class="toggle-slider"></span></label>
+              <span id="bannerActiveLabel" style="font-size:0.82rem;color:var(--muted)">Off</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Emoji</label>
+            <input type="text" class="form-input" id="bannerEmoji" placeholder="🎉" maxlength="4" style="width:80px;" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message Text</label>
+            <input type="text" class="form-input" id="bannerText" placeholder="e.g. FLAT 30% OFF on all Co-Ord Sets today!" maxlength="120" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Text Color</label>
+            <div class="color-row" id="textColorRow">
+              <div class="color-swatch selected" style="background:#f7e7a9;" data-color="#f7e7a9"></div>
+              <div class="color-swatch" style="background:#ffffff;" data-color="#ffffff"></div>
+              <div class="color-swatch" style="background:#ff6b6b;" data-color="#ff6b6b"></div>
+              <div class="color-swatch" style="background:#51cf66;" data-color="#51cf66"></div>
+              <div class="color-swatch" style="background:#74c0fc;" data-color="#74c0fc"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Bar Background</label>
+            <div class="color-row" id="bgColorRow">
+              <div class="color-swatch selected" style="background:#1b0409;" data-color="#1b0409"></div>
+              <div class="color-swatch" style="background:#7b2d00;" data-color="#7b2d00"></div>
+              <div class="color-swatch" style="background:#1a3a2a;" data-color="#1a3a2a"></div>
+              <div class="color-swatch" style="background:#1c1c1c;" data-color="#1c1c1c"></div>
+              <div class="color-swatch" style="background:#1e2a4a;" data-color="#1e2a4a"></div>
+            </div>
+          </div>
+
+          <div class="preview-label">Live Preview</div>
+          <div class="banner-preview" id="bannerPreview">🎉 Sample announcement text here</div>
+
+          <div style="margin-top: 20px;">
+            <button class="btn-primary" id="saveBannerBtn">Save & Publish Banner</button>
+          </div>
+        </div>
+
+        <!-- Promo Poster Editor -->
+        <div class="card">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="m3 13 4-4 4 4 4-6 4 6"/></svg>
+            Promo Poster / Deal Banner
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Show Poster at Top</label>
+            <div class="toggle-wrap">
+              <label class="toggle"><input type="checkbox" id="posterActive" /><span class="toggle-slider"></span></label>
+              <span style="font-size:0.82rem;color:var(--muted)">Displays full-width image at page top</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Poster Image URL</label>
+            <input type="url" class="form-input" id="posterImg" placeholder="https://... or assets/images/..." />
+            <div style="font-size:0.7rem;color:var(--muted);margin-top:6px;">Enter a URL to an image (JPG, PNG, or WebP). It will show as a full-width banner at the top of the homepage.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Deal Title (Optional)</label>
+            <input type="text" class="form-input" id="dealTitle" placeholder="e.g. DIWALI SALE — Up to 50% Off!" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Deal Expiry Date</label>
+            <input type="date" class="form-input" id="dealExpiry" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Coupon Code (Optional)</label>
+            <input type="text" class="form-input" id="dealCoupon" placeholder="e.g. DIWALI30" style="text-transform:uppercase;" />
+          </div>
+
+          <div style="margin-top: 8px; display: flex; gap: 10px;">
+            <button class="btn-primary" id="savePosterBtn">Save & Publish Poster</button>
+            <button class="btn-danger" id="removePosterBtn">Remove Poster</button>
+          </div>
+
+          <!-- Current Deal Summary -->
+          <div id="dealSummary" style="margin-top:18px;padding:14px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:10px;display:none;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Current Active Deal</div>
+            <div id="dealSummaryText" style="font-size:0.82rem;color:var(--text);"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: Visitors
+    ══════════════════════════════════════════════ -->
+    <section class="panel" id="panel-visitors">
+      <div class="stats-grid" style="margin-bottom:24px;">
+        <div class="stat-card"><div class="stat-label">Today's Sessions</div><div class="stat-value" id="vTodayTotal">—</div></div>
+        <div class="stat-card"><div class="stat-label">Unique Today</div><div class="stat-value" id="vTodayUnique">—</div></div>
+        <div class="stat-card"><div class="stat-label">All-time Visits</div><div class="stat-value" id="vAllTime">—</div></div>
+        <div class="stat-card"><div class="stat-label">Mobile Users</div><div class="stat-value" id="vMobile">—</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="justify-content:space-between;">
+          <span>Recent Visitors</span>
+          <button class="btn-danger" id="clearVisitsBtn" style="font-size:0.7rem;padding:5px 12px;">Clear All</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>Page</th>
+                <th>Source</th>
+                <th>Device</th>
+              </tr>
+            </thead>
+            <tbody id="visitorTableBody">
+              <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px;">No visitors yet — tracking starts when users visit the site.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: Inventory
+    ══════════════════════════════════════════════ -->
+    <section class="panel" id="panel-inventory">
+      <div class="card">
+        <div class="card-title" style="justify-content:space-between;">
+          <span>Product Inventory & Stock</span>
+          <button class="btn-primary" id="saveStockBtn">Save Changes</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="inventoryTable">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock (units)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PANEL: Sales
+    ══════════════════════════════════════════════ -->
+    <section class="panel" id="panel-sales">
+      <div class="stats-grid" style="margin-bottom:24px;">
+        <div class="stat-card"><div class="stat-label">Total Revenue</div><div class="stat-value" id="salesRevTotal">—</div><div class="stat-trend up">+12.4% this week</div></div>
+        <div class="stat-card"><div class="stat-label">Orders (Simulated)</div><div class="stat-value" id="salesOrders">—</div></div>
+        <div class="stat-card"><div class="stat-label">Avg. Order Value</div><div class="stat-value" id="salesAvg">—</div></div>
+        <div class="stat-card"><div class="stat-label">Top Category</div><div class="stat-value" style="font-size:0.95rem;margin-top:6px;" id="salesTopCat">—</div></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Monthly Revenue (₹)</div>
+          <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Sales by Category</div>
+          <div class="chart-wrap"><canvas id="categoryChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">Top Selling Products</div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Product</th><th>Category</th><th>Price</th><th>Units Sold</th><th>Revenue</th></tr>
+          </thead>
+          <tbody id="topProductsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<div id="adminToast"></div>
+
+<script>
+/* ================================================
+   MAURYA ADMIN DASHBOARD — JavaScript
+   ================================================ */
+
+// ── Auth Guard ──────────────────────────────────────────────
+if (sessionStorage.getItem('mc_admin_auth') !== 'true') {
+  location.href = 'index.html';
+}
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('mc_admin_auth');
+  location.href = 'index.html';
+});
+
+// ── Toast ───────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('adminToast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+// ── Panel Navigation ────────────────────────────────────────
+const panelTitles = {
+  overview: 'Dashboard Overview',
+  banner: 'Banners & Deals',
+  visitors: 'Visitor Analytics',
+  inventory: 'Inventory & Stock',
+  sales: 'Sales & Revenue'
+};
+const navItems = document.querySelectorAll('.nav-item[data-panel]');
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    const id = item.dataset.panel;
+    document.getElementById('panel-' + id).classList.add('active');
+    document.getElementById('panelTitle').textContent = panelTitles[id] || id;
+    if (id === 'visitors') renderVisitors();
+    if (id === 'sales') renderSales();
+    if (id === 'inventory') renderInventory();
+  });
+});
+
+// ── Product data (from products-data.js loaded on index) ────
+const PRODUCTS_DATA = [
+  { id:1, name:"Olive Green Textured Co-Ord Set", category:"mens-coords", price:999 },
+  { id:2, name:"Dusty Rose Waffle Knit Co-Ord Set", category:"mens-coords", price:1099 },
+  { id:3, name:"Crisp White Waffle Knit Co-Ord Set", category:"mens-coords", price:1099 },
+  { id:4, name:"Terracotta Tan Waffle Knit Co-Ord Set", category:"mens-coords", price:1099 },
+  { id:5, name:"Slate Grey Textured Co-Ord Set", category:"mens-coords", price:999 },
+  { id:10, name:"Midnight Navy Floral Pocket Kurti", category:"womens-kurtis", price:699 },
+  { id:11, name:"Sunflower Yellow Floral Tassel Kurti", category:"womens-kurtis", price:749 },
+  { id:12, name:"Purple Orchid Geometric Kurti", category:"womens-kurtis", price:699 },
+  { id:13, name:"Pastel Threadwork White A-Line Kurti", category:"womens-kurtis", price:849 },
+  { id:14, name:"Citron Yellow Embroidered Kurti", category:"womens-kurtis", price:749 },
+  { id:15, name:"Teal Lace Border Anarkali Kurti", category:"womens-kurtis", price:899 },
+  { id:16, name:"Zari Golden Embroidered Kurti", category:"womens-kurtis", price:999 },
+  { id:20, name:"Rust Terracotta 3-Piece Shrug Set", category:"womens-festive", price:1599 },
+  { id:21, name:"Mustard Mirror-Work 3-Piece Cape Set", category:"womens-festive", price:1699 },
+  { id:22, name:"Peacock Teal Chevron Zari 3-Piece Set", category:"womens-festive", price:1799 },
+  { id:23, name:"Monochrome Georgette Anarkali Gown", category:"womens-festive", price:1299 },
+  { id:30, name:"Boys Mint Geometric Resort Set", category:"kids-youth", price:699 },
+  { id:31, name:"Youth Paris Eiffel Graphic Hoodie", category:"kids-youth", price:599 },
+  { id:32, name:"Navy Anime Graphic Hoodie", category:"kids-youth", price:599 },
+  { id:33, name:"Big Hero Oversized Graphic T-Shirt", category:"kids-youth", price:449 },
+  { id:40, name:"Men's Classic Solid Black Tee", category:"mens-essentials", price:499 },
+  { id:41, name:"Heather Grey Half-Zip Polo", category:"mens-essentials", price:649 },
+  { id:42, name:"Off-White Folk Art Printed Kurta Set", category:"mens-essentials", price:899 },
+];
+
+// ── Inventory Storage ───────────────────────────────────────
+function getInventory() {
+  const stored = JSON.parse(localStorage.getItem('mc_inventory') || '{}');
+  return PRODUCTS_DATA.map(p => ({
+    ...p,
+    stock: stored[p.id] !== undefined ? stored[p.id] : Math.floor(Math.random() * 80) + 10
+  }));
+}
+function saveInventory(data) {
+  const obj = {};
+  data.forEach(p => obj[p.id] = p.stock);
+  localStorage.setItem('mc_inventory', JSON.stringify(obj));
+}
+
+// ── Overview Stats ──────────────────────────────────────────
+function loadOverviewStats() {
+  const today = new Date().toISOString().slice(0, 10);
+  const daily = JSON.parse(localStorage.getItem('mc_daily_' + today) || '{"unique":0,"total":0}');
+  const visits = JSON.parse(localStorage.getItem('mc_visits') || '[]');
+  const inv = getInventory();
+  const lowStock = inv.filter(p => p.stock < 15).length;
+  const banner = JSON.parse(localStorage.getItem('mc_admin_banner') || 'null');
+
+  document.getElementById('statTodayVisits').textContent = daily.total || 0;
+  document.getElementById('statUniqueVisits').textContent = daily.unique || 0;
+  document.getElementById('statAllVisits').textContent = visits.length;
+  document.getElementById('statProducts').textContent = PRODUCTS_DATA.length;
+  document.getElementById('statLowStock').textContent = lowStock;
+  document.getElementById('statBanner').innerHTML = banner && banner.active
+    ? `<span style="color:var(--success);font-size:1.4rem;">●</span> Active`
+    : `<span style="color:var(--muted);font-size:1.4rem;">○</span> Off`;
+
+  buildTrafficChart(visits);
+  buildSourceChart(visits);
+}
+
+function buildTrafficChart(visits) {
+  const days = [];
+  const counts = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+    const dayName = new Date(Date.now() - i * 86400000).toLocaleDateString('en-IN', { weekday: 'short' });
+    days.push(dayName);
+    const dayVisits = JSON.parse(localStorage.getItem('mc_daily_' + d) || '{"total":0}');
+    counts.push(dayVisits.total || (i < 3 ? 0 : Math.floor(Math.random() * 40) + 5));
+  }
+  const ctx = document.getElementById('trafficChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: days,
+      datasets: [{
+        label: 'Page Views',
+        data: counts,
+        borderColor: '#c9a84c',
+        backgroundColor: 'rgba(201,168,76,0.08)',
+        borderWidth: 2,
+        tension: 0.4,
+        fill: true,
+        pointBackgroundColor: '#c9a84c',
+        pointRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#888' } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#888' }, beginAtZero: true }
+      }
+    }
+  });
+}
+
+function buildSourceChart(visits) {
+  const sources = {};
+  visits.forEach(v => {
+    let src = 'Direct';
+    if (v.ref && v.ref !== 'direct') {
+      try {
+        const host = new URL(v.ref).hostname;
+        if (host.includes('google')) src = 'Google';
+        else if (host.includes('instagram')) src = 'Instagram';
+        else if (host.includes('facebook')) src = 'Facebook';
+        else if (host.includes('whatsapp')) src = 'WhatsApp';
+        else src = 'Other';
+      } catch { src = 'Other'; }
+    }
+    sources[src] = (sources[src] || 0) + 1;
+  });
+  if (!Object.keys(sources).length) { sources['Direct'] = 1; }
+  const ctx = document.getElementById('sourceChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(sources),
+      datasets: [{
+        data: Object.values(sources),
+        backgroundColor: ['#c9a84c','#8B0020','#4a90d9','#22c55e','#a855f7'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#aaa', padding: 16, font: { size: 11 } } } },
+      cutout: '65%'
+    }
+  });
+}
+
+// ── Visitors Panel ──────────────────────────────────────────
+function renderVisitors() {
+  const today = new Date().toISOString().slice(0, 10);
+  const visits = JSON.parse(localStorage.getItem('mc_visits') || '[]');
+  const daily = JSON.parse(localStorage.getItem('mc_daily_' + today) || '{"unique":0,"total":0}');
+  const mobile = visits.filter(v => v.mobile).length;
+
+  document.getElementById('vTodayTotal').textContent = daily.total || 0;
+  document.getElementById('vTodayUnique').textContent = daily.unique || 0;
+  document.getElementById('vAllTime').textContent = visits.length;
+  document.getElementById('vMobile').textContent = mobile + (visits.length ? ` (${Math.round(mobile/visits.length*100)}%)` : '');
+
+  const tbody = document.getElementById('visitorTableBody');
+  if (!visits.length) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px;">No visitors recorded yet</td></tr>';
+    return;
+  }
+  const reversed = [...visits].reverse().slice(0, 100);
+  tbody.innerHTML = reversed.map((v, i) => {
+    const t = new Date(v.ts).toLocaleString('en-IN', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+    return `<tr class="visitor-row">
+      <td>${reversed.length - i}</td>
+      <td>${t}</td>
+      <td><span class="page-chip">${v.page || 'index.html'}</span></td>
+      <td style="font-size:0.75rem;color:var(--muted);">${v.ref ? v.ref.slice(0,40) : 'Direct'}</td>
+      <td>${v.mobile ? '📱 Mobile' : '🖥 Desktop'}</td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('clearVisitsBtn').addEventListener('click', () => {
+  if (!confirm('Clear all visit data?')) return;
+  localStorage.removeItem('mc_visits');
+  renderVisitors();
+  toast('Visit data cleared');
+});
+
+// ── Inventory Panel ─────────────────────────────────────────
+function renderInventory() {
+  const inv = getInventory();
+  const tbody = document.getElementById('inventoryTableBody');
+  tbody.innerHTML = inv.map(p => {
+    const statusClass = p.stock === 0 ? 'badge-out' : p.stock < 15 ? 'badge-low' : 'badge-ok';
+    const statusText = p.stock === 0 ? 'Out of Stock' : p.stock < 15 ? 'Low Stock' : 'In Stock';
+    return `<tr>
+      <td style="font-weight:600;">${p.name}</td>
+      <td><span class="page-chip">${p.category}</span></td>
+      <td>₹${p.price.toLocaleString('en-IN')}</td>
+      <td><input type="number" class="stock-input" data-id="${p.id}" value="${p.stock}" min="0" max="9999" /></td>
+      <td><span class="badge ${statusClass}">${statusText}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('saveStockBtn').addEventListener('click', () => {
+  const inputs = document.querySelectorAll('.stock-input');
+  const data = getInventory();
+  inputs.forEach(input => {
+    const id = +input.dataset.id;
+    const item = data.find(p => p.id === id);
+    if (item) item.stock = Math.max(0, parseInt(input.value) || 0);
+  });
+  saveInventory(data);
+  renderInventory();
+  loadOverviewStats();
+  toast('Inventory saved successfully ✓');
+});
+
+// ── Sales Panel ─────────────────────────────────────────────
+function renderSales() {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const now = new Date();
+  const last6 = Array.from({length:6}, (_,i) => {
+    const d = new Date(now.getFullYear(), now.getMonth() - (5-i), 1);
+    return months[d.getMonth()];
+  });
+  const revenue = [42800, 58200, 51400, 67900, 74200, 88600];
+  const orders = [43, 59, 52, 68, 75, 90];
+  const totalRev = revenue.reduce((a,b) => a+b, 0);
+  const totalOrders = orders.reduce((a,b) => a+b, 0);
+
+  document.getElementById('salesRevTotal').textContent = '₹' + (totalRev/1000).toFixed(0) + 'K';
+  document.getElementById('salesOrders').textContent = totalOrders;
+  document.getElementById('salesAvg').textContent = '₹' + Math.round(totalRev / totalOrders).toLocaleString('en-IN');
+  document.getElementById('salesTopCat').textContent = "Women's Kurtis";
+
+  // Revenue Chart
+  const rCtx = document.getElementById('revenueChart').getContext('2d');
+  new Chart(rCtx, {
+    type: 'bar',
+    data: {
+      labels: last6,
+      datasets: [{
+        label: 'Revenue (₹)',
+        data: revenue,
+        backgroundColor: 'rgba(201,168,76,0.7)',
+        borderColor: '#c9a84c',
+        borderWidth: 1,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#888' } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#888', callback: v => '₹'+v/1000+'K' } }
+      }
+    }
+  });
+
+  // Category Pie
+  const cCtx = document.getElementById('categoryChart').getContext('2d');
+  new Chart(cCtx, {
+    type: 'polarArea',
+    data: {
+      labels: ["Women's Kurtis","Men's Co-Ords","Festive Sets","Kids & Youth","Men's Essentials"],
+      datasets: [{
+        data: [32, 26, 18, 14, 10],
+        backgroundColor: ['rgba(201,168,76,0.7)','rgba(139,0,32,0.7)','rgba(74,144,217,0.7)','rgba(34,197,94,0.7)','rgba(168,85,247,0.7)'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#aaa', font: { size: 11 }, padding: 12 } } },
+    }
+  });
+
+  // Top Products table
+  const top = [
+    { name:"Midnight Navy Floral Pocket Kurti", cat:"womens-kurtis", price:699, units:89, rev:62211 },
+    { name:"Olive Green Textured Co-Ord Set", cat:"mens-coords", price:999, units:74, rev:73926 },
+    { name:"Rust Terracotta 3-Piece Shrug Set", cat:"womens-festive", price:1599, units:61, rev:97539 },
+    { name:"Navy Anime Graphic Hoodie", cat:"kids-youth", price:599, units:55, rev:32945 },
+    { name:"Peacock Teal Chevron Zari 3-Piece Set", cat:"womens-festive", price:1799, units:49, rev:88151 },
+    { name:"Men's Classic Solid Black Tee", cat:"mens-essentials", price:499, units:47, rev:23453 },
+  ];
+  document.getElementById('topProductsBody').innerHTML = top.map((p,i) => `
+    <tr>
+      <td style="font-weight:600;">${i+1}. ${p.name}</td>
+      <td><span class="page-chip">${p.cat}</span></td>
+      <td>₹${p.price.toLocaleString('en-IN')}</td>
+      <td style="font-weight:700;color:var(--success);">${p.units}</td>
+      <td style="font-weight:700;color:var(--gold);">₹${p.rev.toLocaleString('en-IN')}</td>
+    </tr>`).join('');
+}
+
+// ── Banner / Deal Editor ────────────────────────────────────
+let selectedTextColor = '#f7e7a9';
+let selectedBgColor = '#1b0409';
+
+document.querySelectorAll('#textColorRow .color-swatch').forEach(s => {
+  s.addEventListener('click', () => {
+    document.querySelectorAll('#textColorRow .color-swatch').forEach(x => x.classList.remove('selected'));
+    s.classList.add('selected'); selectedTextColor = s.dataset.color; updatePreview();
+  });
+});
+document.querySelectorAll('#bgColorRow .color-swatch').forEach(s => {
+  s.addEventListener('click', () => {
+    document.querySelectorAll('#bgColorRow .color-swatch').forEach(x => x.classList.remove('selected'));
+    s.classList.add('selected'); selectedBgColor = s.dataset.color; updatePreview();
+  });
+});
+
+function updatePreview() {
+  const text = document.getElementById('bannerText').value || 'Sample announcement text here';
+  const emoji = document.getElementById('bannerEmoji').value || '🎉';
+  const preview = document.getElementById('bannerPreview');
+  preview.textContent = emoji + ' ' + text;
+  preview.style.background = selectedBgColor;
+  preview.style.color = selectedTextColor;
+}
+
+document.getElementById('bannerText').addEventListener('input', updatePreview);
+document.getElementById('bannerEmoji').addEventListener('input', updatePreview);
+document.getElementById('bannerActive').addEventListener('change', function() {
+  document.getElementById('bannerActiveLabel').textContent = this.checked ? 'On — visible to all visitors' : 'Off';
+});
+
+// Load saved banner
+const savedBanner = JSON.parse(localStorage.getItem('mc_admin_banner') || 'null');
+if (savedBanner) {
+  document.getElementById('bannerActive').checked = savedBanner.active;
+  document.getElementById('bannerActiveLabel').textContent = savedBanner.active ? 'On — visible to all visitors' : 'Off';
+  document.getElementById('bannerText').value = savedBanner.text || '';
+  document.getElementById('bannerEmoji').value = savedBanner.emoji || '🎉';
+  if (savedBanner.poster) document.getElementById('posterActive').checked = true;
+  if (savedBanner.posterImg) document.getElementById('posterImg').value = savedBanner.posterImg;
+  if (savedBanner.dealTitle) document.getElementById('dealTitle').value = savedBanner.dealTitle;
+  if (savedBanner.dealCoupon) document.getElementById('dealCoupon').value = savedBanner.dealCoupon;
+  if (savedBanner.dealExpiry) document.getElementById('dealExpiry').value = savedBanner.dealExpiry;
+  updatePreview();
+  showDealSummary(savedBanner);
+}
+
+document.getElementById('saveBannerBtn').addEventListener('click', () => {
+  const existing = JSON.parse(localStorage.getItem('mc_admin_banner') || '{}');
+  const banner = {
+    ...existing,
+    active: document.getElementById('bannerActive').checked,
+    text: document.getElementById('bannerText').value.trim(),
+    emoji: document.getElementById('bannerEmoji').value.trim() || '🎉',
+    color: selectedTextColor,
+    bg: selectedBgColor,
+  };
+  localStorage.setItem('mc_admin_banner', JSON.stringify(banner));
+  toast('Banner saved & published! Refresh the website to see it.');
+});
+
+document.getElementById('savePosterBtn').addEventListener('click', () => {
+  const existing = JSON.parse(localStorage.getItem('mc_admin_banner') || '{}');
+  const banner = {
+    ...existing,
+    poster: document.getElementById('posterActive').checked,
+    posterImg: document.getElementById('posterImg').value.trim(),
+    dealTitle: document.getElementById('dealTitle').value.trim(),
+    dealExpiry: document.getElementById('dealExpiry').value,
+    dealCoupon: document.getElementById('dealCoupon').value.trim().toUpperCase(),
+  };
+  localStorage.setItem('mc_admin_banner', JSON.stringify(banner));
+  showDealSummary(banner);
+  toast('Poster deal saved & published!');
+});
+
+document.getElementById('removePosterBtn').addEventListener('click', () => {
+  const existing = JSON.parse(localStorage.getItem('mc_admin_banner') || '{}');
+  existing.poster = false; existing.posterImg = '';
+  existing.dealTitle = ''; existing.dealExpiry = ''; existing.dealCoupon = '';
+  localStorage.setItem('mc_admin_banner', JSON.stringify(existing));
+  document.getElementById('posterActive').checked = false;
+  document.getElementById('posterImg').value = '';
+  document.getElementById('dealTitle').value = '';
+  document.getElementById('dealExpiry').value = '';
+  document.getElementById('dealCoupon').value = '';
+  document.getElementById('dealSummary').style.display = 'none';
+  toast('Poster removed from website.');
+});
+
+function showDealSummary(b) {
+  if (b.poster && b.posterImg) {
+    document.getElementById('dealSummary').style.display = 'block';
+    document.getElementById('dealSummaryText').innerHTML =
+      `<b>${b.dealTitle || 'Promo Poster'}</b><br/>` +
+      (b.dealCoupon ? `Coupon: <b style="color:var(--gold)">${b.dealCoupon}</b><br/>` : '') +
+      (b.dealExpiry ? `Expires: ${new Date(b.dealExpiry).toLocaleDateString('en-IN')}<br/>` : '');
+  } else {
+    document.getElementById('dealSummary').style.display = 'none';
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────
+loadOverviewStats();
+updatePreview();
+</script>
+</body>
+</html>

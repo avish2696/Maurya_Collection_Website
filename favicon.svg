@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="mcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#990026"/>
+      <stop offset="100%" stop-color="#550014"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="240" fill="url(#mcGrad)"/>
+  <g fill="#ffffff">
+    <path d="M140 370 V180 L256 280 L372 180 V370 H320 V250 L256 305 L192 250 V370 Z"/>
+    <circle cx="256" cy="145" r="22" fill="#ffd700"/>
+  </g>
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#ffd700" stroke-width="4" stroke-opacity="0.6"/>
+</svg>

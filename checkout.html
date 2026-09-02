@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Secure Order | Maurya Collection</title>
+  <meta name="description" content="Complete your order securely at Maurya Collection. Cash on Delivery, UPI, or card. Free shipping above ₹999." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/favicon/maurya-collection-icon.svg" />
+  <link rel="shortcut icon" href="public/favicon/maurya-collection-icon.svg" />
+  <link rel="apple-touch-icon" href="public/images/brand/maurya-collection-icon.png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; max-width: 100vw; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ─── TOPBAR ─── */
+    .co-topbar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .co-topbar-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .co-back-btn {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 700; color: #334155;
+      background: none;
+    }
+    .co-brand {
+      font-size: 1rem; font-weight: 800; color: #0f172a;
+      margin-right: auto;
+    }
+    .co-secure {
+      font-size: 0.72rem; font-weight: 600; color: #16a34a;
+      background: #f0fdf4; border: 1px solid #bbf7d0;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    @media (max-width: 480px) {
+      .co-brand { display: none; }
+      .co-secure { font-size: 0.65rem; padding: 3px 8px; }
+    }
+
+    /* ─── STEP PROGRESS ─── */
+    .co-steps {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 16px;
+    }
+    .co-steps-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: center; gap: 0;
+    }
+    .step-item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+    }
+    .step-circle {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 2px solid #e2e8f0;
+      background: #f8fafc; color: #94a3b8;
+      font-size: 0.8rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .step-circle.active { border-color: #7a001e; background: #7a001e; color: #fff; }
+    .step-circle.done { border-color: #16a34a; background: #16a34a; color: #fff; }
+    .step-lbl { font-size: 0.68rem; font-weight: 700; color: #94a3b8; }
+    .step-lbl.active { color: #7a001e; }
+    .step-lbl.done { color: #16a34a; }
+    .step-line {
+      flex: 1; height: 2px; background: #e2e8f0;
+      min-width: 28px; max-width: 60px;
+      margin: 0 4px; align-self: flex-start; margin-top: 15px;
+      transition: background 0.3s;
+    }
+    .step-line.done { background: #16a34a; }
+    @media (max-width: 380px) {
+      .step-lbl { display: none; }
+      .step-line { min-width: 18px; }
+    }
+
+    /* ─── MAIN LAYOUT ─── */
+    .co-main {
+      max-width: 960px; margin: 0 auto;
+      padding: 16px 12px 40px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .co-main {
+        grid-template-columns: 1fr;
+        padding: 12px 10px 40px;
+      }
+    }
+
+    /* ─── CARD/PANEL ─── */
+    .co-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .co-card:last-child { margin-bottom: 0; }
+    .co-card-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .co-step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #7a001e; color: #fff;
+      font-size: 0.75rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .co-card-head h2 { font-size: 1rem; font-weight: 800; }
+    .co-card-body { padding: 16px; }
+
+    /* ─── FORM ELEMENTS ─── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-grid.full { grid-template-columns: 1fr; }
+    @media (max-width: 480px) {
+      .form-grid { grid-template-columns: 1fr; gap: 10px; }
+    }
+    .fg {
+      display: flex; flex-direction: column; gap: 4px;
+      margin-bottom: 0;
+    }
+    .fg label {
+      font-size: 0.75rem; font-weight: 700;
+      color: #475569; letter-spacing: 0.01em;
+    }
+    .fg input, .fg select, .fg textarea {
+      padding: 11px 13px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 16px; /* 16px prevents iOS zoom */
+      color: #0f172a;
+      background: #fff;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      outline: none; border-color: #7a001e;
+      box-shadow: 0 0 0 3px rgba(122,0,30,0.08);
+    }
+    .fg input.error, .fg select.error, .fg textarea.error {
+      border-color: #ef4444; background: #fff5f5;
+    }
+    .fg textarea { resize: vertical; min-height: 64px; }
+    .fg .err-msg {
+      font-size: 0.7rem; color: #dc2626; font-weight: 600; display: none;
+    }
+    .fg .err-msg.show { display: block; }
+
+    /* ─── PAYMENT ─── */
+    .pay-card {
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      padding: 13px 14px; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 12px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .pay-card:last-child { margin-bottom: 0; }
+    .pay-card:hover { border-color: #7a001e; }
+    .pay-card.selected { border-color: #7a001e; background: #fff5f7; }
+    .pay-card input[type="radio"] { accent-color: #7a001e; width: 17px; height: 17px; flex-shrink: 0; }
+    .pay-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .pay-label strong { display: block; font-size: 0.88rem; font-weight: 800; color: #0f172a; }
+    .pay-label span { font-size: 0.75rem; color: #64748b; }
+    .pay-badge {
+      margin-left: auto; font-size: 0.65rem; font-weight: 800;
+      color: #15803d; background: #dcfce7; padding: 3px 8px; border-radius: 999px;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .upi-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+    .upi-pill {
+      font-size: 0.68rem; font-weight: 800; color: #0f172a;
+      background: #f8fafc; border: 1px solid #e2e8f0;
+      padding: 2px 8px; border-radius: 6px;
+    }
+    .card-extra { display: none; padding-top: 12px; }
+    .card-extra.show { display: block; }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #7a001e 0%, #a30028 100%);
+      color: #fff; border-radius: 12px;
+      font-size: 0.95rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 6px 20px rgba(122,0,30,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(122,0,30,0.28); }
+    .btn-primary:disabled { opacity: 0.65; transform: none; }
+    .btn-primary.green { background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); box-shadow: 0 6px 20px rgba(22,163,74,0.2); }
+    .btn-secondary {
+      width: 100%; padding: 12px;
+      background: #f8fafc; color: #334155;
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      font-size: 0.88rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-back {
+      padding: 11px 18px; width: auto;
+      background: #f8fafc; color: #334155;
+      border: 1.5px solid #e2e8f0; border-radius: 10px;
+      font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+
+    /* ─── ORDER SUMMARY SIDEBAR ─── */
+    @media (max-width: 700px) {
+      /* On mobile, show order summary ABOVE the form */
+      .co-sidebar { order: -1; }
+    }
+    .summary-card {
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;
+    }
+    .summary-head {
+      padding: 14px 16px; border-bottom: 1px solid #f1f5f9;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .summary-head h3 { font-size: 0.95rem; font-weight: 800; }
+    .summary-items { padding: 12px 16px; max-height: 220px; overflow-y: auto; }
+    .sum-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid #f8fafc;
+    }
+    .sum-item:last-child { border-bottom: none; }
+    .sum-item img {
+      width: 50px; height: 50px; border-radius: 8px;
+      object-fit: cover; border: 1px solid #e2e8f0; flex-shrink: 0;
+    }
+    .sum-item-info { flex: 1; min-width: 0; }
+    .sum-item-name { font-size: 0.78rem; font-weight: 700; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sum-item-size { font-size: 0.68rem; color: #64748b; margin-top: 2px; }
+    .sum-item-price { font-size: 0.82rem; font-weight: 800; color: #7a001e; flex-shrink: 0; }
+    .summary-totals { padding: 12px 16px; border-top: 1px solid #f1f5f9; }
+    .coupon-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .coupon-row input {
+      flex: 1; padding: 10px 12px; font-size: 0.85rem; font-family: inherit;
+      border: 1.5px solid #e2e8f0; border-radius: 10px; color: #0f172a;
+    }
+    .coupon-row button {
+      padding: 10px 14px; font-size: 0.8rem; font-weight: 800;
+      background: #0f172a; color: #fff; border-radius: 10px; white-space: nowrap;
+    }
+    .coupon-ok { font-size: 0.75rem; color: #16a34a; font-weight: 700; display: none; margin-bottom: 8px; }
+    .total-line {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.83rem; margin-bottom: 6px; color: #334155;
+    }
+    .total-line.grand {
+      font-size: 1rem; font-weight: 800; color: #0f172a;
+      padding-top: 8px; border-top: 1px solid #e2e8f0; margin-top: 6px;
+    }
+    .savings-val { color: #16a34a; font-weight: 700; }
+    .summary-secure {
+      padding: 10px 16px; font-size: 0.72rem;
+      color: #64748b; text-align: center;
+      border-top: 1px solid #f1f5f9; background: #f8fafc;
+    }
+
+    /* ─── SUCCESS SCREEN ─── */
+    .success-screen {
+      display: none; position: fixed; inset: 0;
+      background: #f1f5f9;
+      align-items: center; justify-content: center;
+      padding: 20px; z-index: 999;
+    }
+    .success-screen.show { display: flex; }
+    .success-box {
+      background: #fff; border-radius: 20px;
+      padding: 36px 28px; text-align: center;
+      max-width: 440px; width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .success-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .success-box h2 { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+    .success-box p { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }
+    .order-id-tag {
+      background: #f1f5f9; border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .order-id-tag span { font-size: 0.75rem; color: #64748b; }
+    .order-id-tag strong { font-size: 0.9rem; font-weight: 800; color: #7a001e; }
+    .success-actions { display: flex; flex-direction: column; gap: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <div class="co-topbar">
+    <div class="co-topbar-inner">
+      <button class="co-back-btn" onclick="window.location.href='shop.html'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Shop
+      </button>
+      <span class="co-brand">Maurya Collection</span>
+      <span class="co-secure">🔒 Secure Checkout</span>
+    </div>
+  </div>
+
+  <!-- ── STEP PROGRESS ── -->
+  <div class="co-steps">
+    <div class="co-steps-inner">
+      <div class="step-item">
+        <div class="step-circle active" id="sc1">1</div>
+        <span class="step-lbl active" id="sl1">Delivery</span>
+      </div>
+      <div class="step-line" id="sline1"></div>
+      <div class="step-item">
+        <div class="step-circle" id="sc2">2</div>
+        <span class="step-lbl" id="sl2">Payment</span>
+      </div>
+      <div class="step-line" id="sline2"></div>
+      <div class="step-item">
+        <div class="step-circle" id="sc3">✓</div>
+        <span class="step-lbl" id="sl3">Confirm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div id="checkoutArea">
+    <div class="co-main">
+
+      <!-- LEFT: Form Steps -->
+      <div class="co-form-col">
+
+        <!-- STEP 1: DELIVERY ADDRESS -->
+        <div id="stepDelivery">
+          <div class="co-card">
+            <div class="co-card-head">
+              <div class="co-step-num">1</div>
+              <h2>Delivery Address</h2>
+            </div>
+            <div class="co-card-body">
+              <div style="display:flex; flex-direction:column; gap:12px;">
+
+                <div class="form-grid">
+                  <div class="fg">
+                    <label>First Name *</label>
+                    <input type="text" id="firstName" placeholder="Avishkar" autocomplete="given-name" />
+                    <span class="err-msg" id="errFirstName"></span>
+                  </div>
+                  <div class="fg">
+                    <label>Last Name *</label>
+                    <input type="text" id="lastName" placeholder="Kumar" autocomplete="family-name" />
+                    <span class="err-msg" id="errLastName"></span>
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="fg">
+                    <label>Mobile Number *</label>
+                    <input type="tel" id="mobile" placeholder="+91 62056 09260" maxlength="13" autocomplete="tel" />
+                    <span class="err-msg" id="errMobile"></span>
+                  </div>
+                  <div class="fg">
+                    <label>Email (optional)</label>
+                    <input type="email" id="email" placeholder="you@email.com" autocomplete="email" />
+                  </div>
+                </div>
+
+                <div class="form-grid full">
+                  <div class="fg">
+                    <label>Full Address *</label>
+                    <textarea id="address" placeholder="House No., Street, Area, Landmark..." rows="2"></textarea>
+                    <span class="err-msg" id="errAddress"></span>
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="fg">
+                    <label>City *</label>
+                    <input type="text" id="city" placeholder="Patna" autocomplete="address-level2" />
+                    <span class="err-msg" id="errCity"></span>
+                  </div>
+                  <div class="fg">
+                    <label>PIN Code *</label>
+                    <input type="text" id="pincode" placeholder="800001" maxlength="6" autocomplete="postal-code" inputmode="numeric" />
+                    <span class="err-msg" id="errPincode"></span>
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="fg">
+                    <label>State *</label>
+                    <select id="state">
+                      <option value="">Select State</option>
+                      <option>Andhra Pradesh</option><option>Arunachal Pradesh</option>
+                      <option>Assam</option><option>Bihar</option><option>Chhattisgarh</option>
+                      <option>Delhi</option><option>Goa</option><option>Gujarat</option>
+                      <option>Haryana</option><option>Himachal Pradesh</option>
+                      <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                      <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+                      <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
+                      <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+                      <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+                      <option>Tripura</option><option selected>Uttar Pradesh</option>
+                      <option>Uttarakhand</option><option>West Bengal</option>
+                    </select>
+                    <span class="err-msg" id="errState"></span>
+                  </div>
+                  <div class="fg">
+                    <label>Delivery Note (optional)</label>
+                    <input type="text" id="deliveryNote" placeholder="Leave at door, call on arrival..." />
+                  </div>
+                </div>
+
+                <button class="btn-primary" id="btnGoPayment" style="margin-top:4px;">
+                  Proceed to Payment →
+                </button>
+                <button class="btn-primary green" id="btnDirectWA">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Order on WhatsApp (Fastest)
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: PAYMENT -->
+        <div id="stepPayment" style="display:none;">
+          <div class="co-card">
+            <div class="co-card-head">
+              <div class="co-step-num">2</div>
+              <h2>Payment Method</h2>
+            </div>
+            <div class="co-card-body">
+
+              <label class="pay-card selected" id="codCard">
+                <input type="radio" name="payment" value="cod" checked />
+                <span class="pay-icon">💵</span>
+                <div class="pay-label">
+                  <strong>Cash on Delivery</strong>
+                  <span>Pay when your order arrives</span>
+                </div>
+                <span class="pay-badge">No Extra Charge</span>
+              </label>
+
+              <label class="pay-card" id="upiCard">
+                <input type="radio" name="payment" value="upi" />
+                <span class="pay-icon">📱</span>
+                <div class="pay-label">
+                  <strong>UPI / QR Code</strong>
+                  <span>GPay, PhonePe, Paytm, BHIM</span>
+                  <div class="upi-pills">
+                    <span class="upi-pill">GPay</span>
+                    <span class="upi-pill">PhonePe</span>
+                    <span class="upi-pill">Paytm</span>
+                    <span class="upi-pill">BHIM</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="pay-card" id="cardCard">
+                <input type="radio" name="payment" value="card" />
+                <span class="pay-icon">💳</span>
+                <div class="pay-label">
+                  <strong>Credit / Debit Card</strong>
+                  <span>Visa, Mastercard, RuPay</span>
+                </div>
+              </label>
+
+              <!-- Card Fields (shown when card is selected) -->
+              <div class="card-extra" id="cardExtra">
+                <div style="display:flex; flex-direction:column; gap:10px; padding: 12px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0;">
+                  <div class="fg">
+                    <label>Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" />
+                  </div>
+                  <div class="form-grid">
+                    <div class="fg">
+                      <label>Expiry (MM/YY)</label>
+                      <input type="text" id="cardExpiry" placeholder="09/27" maxlength="5" />
+                    </div>
+                    <div class="fg">
+                      <label>CVV</label>
+                      <input type="password" id="cardCvv" placeholder="•••" maxlength="4" />
+                    </div>
+                  </div>
+                  <div class="fg">
+                    <label>Name on Card</label>
+                    <input type="text" id="cardName" placeholder="AVISHKAR KUMAR" />
+                  </div>
+                </div>
+              </div>
+
+              <label class="pay-card" id="netCard">
+                <input type="radio" name="payment" value="netbanking" />
+                <span class="pay-icon">🏦</span>
+                <div class="pay-label">
+                  <strong>Net Banking</strong>
+                  <span>All major Indian banks supported</span>
+                </div>
+              </label>
+
+              <div class="btn-row">
+                <button class="btn-back" id="btnBackDelivery">← Back</button>
+                <button class="btn-primary" id="btnPlaceOrder" style="flex:1;">
+                  🛍️ Place Order
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /co-form-col -->
+
+      <!-- RIGHT: ORDER SUMMARY SIDEBAR -->
+      <div class="co-sidebar">
+        <div class="summary-card">
+          <div class="summary-head">
+            <h3>Order Summary</h3>
+            <span style="font-size:0.8rem;color:#64748b;" id="summaryCount"></span>
+          </div>
+          <div class="summary-items" id="summaryItems"></div>
+          <div class="summary-totals">
+            <div class="coupon-row">
+              <input type="text" id="couponInput" placeholder="Coupon code (MAURYA10)" />
+              <button id="btnApplyCoupon">Apply</button>
+            </div>
+            <div class="coupon-ok" id="couponOk">✓ MAURYA10 applied — 10% OFF!</div>
+            <div class="total-line">
+              <span>Subtotal</span>
+              <span id="sumSubtotal">₹0</span>
+            </div>
+            <div class="total-line">
+              <span>Discount</span>
+              <span class="savings-val" id="sumDiscount">-₹0</span>
+            </div>
+            <div class="total-line">
+              <span>Delivery</span>
+              <span style="color:#16a34a;font-weight:700;" id="sumDelivery">FREE</span>
+            </div>
+            <div class="total-line grand">
+              <span>Total</span>
+              <span id="sumTotal">₹0</span>
+            </div>
+          </div>
+          <div class="summary-secure">🔒 SSL Secured · 7-Day Exchange · COD Available</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SUCCESS SCREEN ── -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-box">
+      <div class="success-icon">🎉</div>
+      <h2>Order Placed!</h2>
+      <p>Thank you for shopping with Maurya Collection. Your order has been sent via WhatsApp. We'll confirm it shortly.</p>
+      <div class="order-id-tag">
+        <span>Order ID</span>
+        <strong id="orderId">MC-2026-XXXXXX</strong>
+      </div>
+      <p style="font-size:0.78rem;color:#94a3b8;margin-bottom:20px;">Estimated delivery: <strong style="color:#0f172a;">5–7 business days</strong></p>
+      <div class="success-actions">
+        <a href="shop.html"><button class="btn-primary">Continue Shopping →</button></a>
+        <button class="btn-secondary" onclick="window.print()">🖨️ Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  'use strict';
+  const WA_NO = '916205609260';
+  const cart = JSON.parse(localStorage.getItem('mc_cart') || '[]');
+  let couponDiscount = 0;
+
+  /* ── RENDER SUMMARY ── */
+  function renderSummary(disc = 0) {
+    const list = document.getElementById('summaryItems');
+    const countEl = document.getElementById('summaryCount');
+    const subEl = document.getElementById('sumSubtotal');
+    const discEl = document.getElementById('sumDiscount');
+    const delEl = document.getElementById('sumDelivery');
+    const totEl = document.getElementById('sumTotal');
+
+    const totalQty = cart.reduce((s, c) => s + c.qty, 0);
+    if (countEl) countEl.textContent = '(' + totalQty + ' item' + (totalQty !== 1 ? 's' : '') + ')';
+
+    if (!cart.length) {
+      if (list) list.innerHTML = `<div style="text-align:center;padding:32px 16px;">
+        <div style="font-size:2.2rem;margin-bottom:10px;">🛍️</div>
+        <h3 style="font-size:1rem;color:#0f172a;margin-bottom:6px;">Your bag is empty</h3>
+        <p style="font-size:0.82rem;color:#64748b;margin-bottom:16px;">Browse our 158+ designs to fill your bag.</p>
+        <a href="shop.html" style="display:inline-block;background:#7a001e;color:#fff;padding:10px 20px;border-radius:10px;font-weight:700;font-size:0.85rem;">Explore Shop →</a>
+      </div>`;
+      return;
+    }
+
+    if (list) {
+      list.innerHTML = cart.map(item => `<div class="sum-item">
+        <img src="${item.img}" alt="${item.name}" onerror="this.src='public/images/brand/maurya-collection-icon.png'" />
+        <div class="sum-item-info">
+          <div class="sum-item-name">${item.name}</div>
+          <div class="sum-item-size">Size: ${item.size || 'M'} · Qty: ${item.qty}</div>
+        </div>
+        <div class="sum-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+      </div>`).join('');
+    }
+
+    const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    const discAmt = Math.round(sub * disc);
+    const final = sub - discAmt;
+    const delivery = final >= 999 ? 0 : 49;
+
+    if (subEl) subEl.textContent = '₹' + sub.toLocaleString('en-IN');
+    if (discEl) discEl.textContent = '-₹' + discAmt.toLocaleString('en-IN');
+    if (delEl) delEl.textContent = delivery === 0 ? 'FREE' : '₹49';
+    if (totEl) totEl.textContent = '₹' + (final + delivery).toLocaleString('en-IN');
+  }
+  renderSummary(0);
+
+  /* ── COUPON ── */
+  document.getElementById('btnApplyCoupon').addEventListener('click', () => {
+    const val = document.getElementById('couponInput').value.trim().toUpperCase();
+    const ci = document.getElementById('couponInput');
+    const ok = document.getElementById('couponOk');
+    if (val === 'MAURYA10') {
+      couponDiscount = 0.10;
+      ci.style.borderColor = '#16a34a'; ci.style.background = '';
+      ok.style.display = 'block';
+      renderSummary(couponDiscount);
+    } else {
+      ci.style.borderColor = '#ef4444'; ci.style.background = '#fff5f5';
+      ok.style.display = 'none';
+      let errP = document.getElementById('couponErrMsg');
+      if (!errP) {
+        errP = document.createElement('p');
+        errP.id = 'couponErrMsg';
+        errP.style.cssText = 'color:#dc2626;font-size:0.72rem;font-weight:700;margin-top:5px;';
+        ci.parentNode.appendChild(errP);
+      }
+      errP.textContent = '❌ Invalid code. Try MAURYA10 for 10% off!';
+      setTimeout(() => { errP.textContent = ''; ci.style.borderColor = ''; ci.style.background = ''; }, 3000);
+    }
+  });
+
+  /* ── PAYMENT TOGGLE ── */
+  document.querySelectorAll('input[name="payment"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('selected'));
+      r.closest('.pay-card').classList.add('selected');
+      const extra = document.getElementById('cardExtra');
+      if (extra) extra.classList.toggle('show', r.value === 'card');
+    });
+  });
+  document.getElementById('cardNumber')?.addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim().slice(0,19);
+  });
+  document.getElementById('cardExpiry')?.addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g,'').replace(/(\d{2})(\d)/,'$1/$2').slice(0,5);
+  });
+
+  /* ── VALIDATE STEP 1 ── */
+  function validateStep1() {
+    let ok = true;
+    const fields = [
+      { id: 'firstName', err: 'errFirstName', label: 'First name' },
+      { id: 'lastName', err: 'errLastName', label: 'Last name' },
+      { id: 'mobile', err: 'errMobile', label: 'Mobile number' },
+      { id: 'address', err: 'errAddress', label: 'Address' },
+      { id: 'city', err: 'errCity', label: 'City' },
+      { id: 'pincode', err: 'errPincode', label: 'PIN code' },
+      { id: 'state', err: 'errState', label: 'State' },
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = document.getElementById(f.err);
+      if (el && !el.value.trim()) {
+        el.classList.add('error');
+        if (errEl) { errEl.textContent = f.label + ' is required'; errEl.classList.add('show'); }
+        ok = false;
+      } else if (el) {
+        el.classList.remove('error');
+        if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+      }
+    });
+    const pin = document.getElementById('pincode');
+    if (pin && pin.value.replace(/\D/g,'').length !== 6) {
+      pin.classList.add('error');
+      const e = document.getElementById('errPincode');
+      if (e) { e.textContent = 'Enter 6-digit PIN'; e.classList.add('show'); }
+      ok = false;
+    }
+    const mob = document.getElementById('mobile');
+    if (mob && mob.value.replace(/\D/g,'').length < 10) {
+      mob.classList.add('error');
+      const e = document.getElementById('errMobile');
+      if (e) { e.textContent = 'Enter 10-digit mobile'; e.classList.add('show'); }
+      ok = false;
+    }
+    return ok;
+  }
+
+  function setProgress(step) {
+    const steps = [
+      { c: 'sc1', l: 'sl1', line: 'sline1' },
+      { c: 'sc2', l: 'sl2', line: 'sline2' },
+      { c: 'sc3', l: 'sl3', line: null },
+    ];
+    steps.forEach((s, i) => {
+      const c = document.getElementById(s.c);
+      const l = document.getElementById(s.l);
+      const line = s.line ? document.getElementById(s.line) : null;
+      if (i + 1 < step) {
+        c.className = 'step-circle done'; l.className = 'step-lbl done';
+        if (line) line.className = 'step-line done';
+      } else if (i + 1 === step) {
+        c.className = 'step-circle active'; l.className = 'step-lbl active';
+        if (line) line.className = 'step-line';
+      } else {
+        c.className = 'step-circle'; l.className = 'step-lbl';
+        if (line) line.className = 'step-line';
+      }
+    });
+  }
+
+  /* ── STEP NAVIGATION ── */
+  document.getElementById('btnGoPayment').addEventListener('click', () => {
+    if (!validateStep1()) { document.querySelector('.fg .error')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    document.getElementById('stepDelivery').style.display = 'none';
+    document.getElementById('stepPayment').style.display = 'block';
+    setProgress(2);
+    window.scrollTo(0, 0);
+  });
+
+  document.getElementById('btnBackDelivery').addEventListener('click', () => {
+    document.getElementById('stepPayment').style.display = 'none';
+    document.getElementById('stepDelivery').style.display = 'block';
+    setProgress(1);
+    window.scrollTo(0, 0);
+  });
+
+  document.getElementById('btnDirectWA').addEventListener('click', () => {
+    if (!validateStep1()) return;
+    document.getElementById('btnPlaceOrder').click();
+  });
+
+  /* ── PLACE ORDER ── */
+  document.getElementById('btnPlaceOrder').addEventListener('click', () => {
+    const btn = document.getElementById('btnPlaceOrder');
+    btn.innerHTML = '⏳ Preparing order...'; btn.disabled = true;
+
+    const name    = document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim();
+    const mobile  = document.getElementById('mobile').value.trim();
+    const addr    = document.getElementById('address').value.trim();
+    const city    = document.getElementById('city').value.trim();
+    const state   = document.getElementById('state').value;
+    const pin     = document.getElementById('pincode').value.trim();
+    const note    = document.getElementById('deliveryNote').value.trim();
+    const payment = document.querySelector('input[name="payment"]:checked')?.value || 'COD';
+
+    const itemLines = cart.map((item, i) =>
+      `  ${i+1}. ${item.name}\n     Size: ${item.size||'N/A'} | Qty: ${item.qty} | ₹${(item.price*item.qty).toLocaleString('en-IN')}`
+    ).join('\n');
+
+    const sub      = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    const disc     = Math.round(sub * couponDiscount);
+    const final    = sub - disc;
+    const delivery = final >= 999 ? 0 : 49;
+    const total    = final + delivery;
+    const orderId  = 'MC-' + new Date().getFullYear() + '-' + Math.random().toString(36).toUpperCase().slice(2,8);
+
+    const msg = [
+      '🛍️ *NEW ORDER — Maurya Collection*',
+      '━━━━━━━━━━━━━━━━━━━',
+      '📦 *Order ID:* ' + orderId,
+      '📅 *Date:* ' + new Date().toLocaleDateString('en-IN'),
+      '',
+      '👤 *Customer*',
+      'Name: ' + name,
+      'Mobile: ' + mobile,
+      '',
+      '📍 *Delivery Address*',
+      addr,
+      city + ', ' + state + ' - ' + pin,
+      note ? 'Note: ' + note : '',
+      '',
+      '🧾 *Order Items*',
+      itemLines,
+      '',
+      '💰 *Payment Summary*',
+      'Subtotal: ₹' + sub.toLocaleString('en-IN'),
+      disc > 0 ? 'Discount: -₹' + disc.toLocaleString('en-IN') : '',
+      'Delivery: ' + (delivery === 0 ? 'FREE' : '₹49'),
+      '*Total: ₹' + total.toLocaleString('en-IN') + '*',
+      'Payment: ' + payment.toUpperCase(),
+      '',
+      '━━━━━━━━━━━━━━━━━━━',
+      '✅ Please confirm this order. Thank you! 🙏',
+    ].filter(l => l !== null && l !== undefined).join('\n');
+
+    // Save order
+    const orders = JSON.parse(localStorage.getItem('mc_orders') || '[]');
+    orders.push({ orderId, items: cart, customer: { name, mobile, addr, city, state, pin }, payment, total: '₹' + total, date: new Date().toLocaleDateString('en-IN') });
+    localStorage.setItem('mc_orders', JSON.stringify(orders));
+    localStorage.removeItem('mc_cart');
+
+    setProgress(3);
+
+    setTimeout(() => {
+      document.getElementById('orderId').textContent = orderId;
+      document.getElementById('checkoutArea').style.display = 'none';
+      document.getElementById('successScreen').classList.add('show');
+      window.scrollTo(0, 0);
+      window.open('https://wa.me/' + WA_NO + '?text=' + encodeURIComponent(msg), '_blank');
+    }, 700);
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maurya Collection | Contemporary Indian Wear, Loungewear & Kurtis</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Discover Maurya Collection — comfortable Men's Co-ord Sets, breathable Cotton Kurtis, Indo-Western Festive Sets & Youth Casuals. Everyday comfort crafted with quality fabrics." />
+  <meta name="keywords" content="Maurya Collection, mens coord sets, waffle knit short set, cotton kurtis, festive fusion sets, women ethnic wear, youth hoodies, Indian apparel" />
+  <meta name="author" content="Maurya Collection" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mauryacollection.in/" />
+  <meta property="og:title" content="Maurya Collection | Contemporary Indian Wear & Loungewear" />
+  <meta property="og:description" content="Comfortable Men's Co-ord Sets, breathable Cotton Kurtis & Indo-Western Festive Wear. Free shipping on orders over ₹999." />
+  <meta property="og:image" content="assets/logo/maurya-collection-logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maurya Collection | Contemporary Indian Wear & Loungewear" />
+  <meta name="twitter:description" content="Comfortable Men's Co-ord Sets, Cotton Kurtis & Indo-Western Festive Sets." />
+  <meta name="twitter:image" content="assets/logo/maurya-collection-logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/logo/maurya-collection-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ===== LUXURY LOADER / SPLASH SCREEN ===== -->
+  <div class="mc-loader-screen" id="mcLoader" role="status" aria-label="Loading Maurya Collection">
+    <div class="mc-glow-aura"></div>
+    <div class="mc-loader-container">
+      <div class="mc-emblem-stage">
+        <div class="mc-ring-outer"></div>
+        <div class="mc-ring-middle"></div>
+        <div class="mc-emblem-disc">
+          <img src="assets/logo/maurya-collection-icon.png" alt="Maurya Collection Emblem" class="mc-emblem-img" width="68" height="68" />
+        </div>
+      </div>
+      <h2 class="mc-brand-heading">Maurya Collection</h2>
+      <span class="mc-brand-sub">Apparel &amp; Ethnic Wear</span>
+      <div class="mc-progress-track">
+        <div class="mc-progress-bar"></div>
+      </div>
+      <span class="mc-loader-status" id="mcLoaderStatus">Weaving Elegance...</span>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce-bar" id="announceBar" role="banner">
+    <div class="announce-inner">
+      <span>Free standard shipping on orders above ₹999 across India</span>
+      <span class="sep">•</span>
+      <span>Use code <strong>MAURYA10</strong> for 10% off your first order</span>
+      <span class="sep">•</span>
+      <span>Hassle-free 7-day exchanges</span>
+    </div>
+    <button class="announce-close" id="announceClose" aria-label="Close announcement">&times;</button>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <div class="nav-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a href="#home" class="nav-logo" aria-label="Maurya Collection — Homepage">
+          <img src="assets/logo/maurya-collection-logo.png" alt="Maurya Collection" class="nav-logo-img" height="38" />
+        </a>
+      </div>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <button class="nav-close" id="navClose" aria-label="Close navigation menu">&times;</button>
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="shop.html" class="nav-link">Shop All</a>
+        <a href="#collections" class="nav-link">Categories</a>
+        <a href="#arrivals" class="nav-link">New In</a>
+        <a href="#about" class="nav-link">Our Story</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="searchToggle" aria-label="Search collection" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="shop.html" class="nav-icon-btn orders-icon-btn" aria-label="Orders" title="Orders">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </a>
+        <button class="nav-icon-btn cart-icon-btn" id="cartOpen" aria-label="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
+        </button>
+        <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20have%20an%20enquiry" class="nav-icon-btn account-icon-btn" aria-label="Account & Support" title="Account & Support" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar" role="search">
+      <label for="searchInput" class="sr-only">Search products</label>
+      <input type="search" placeholder="Search by style, color or fabric (e.g. waffle, cotton kurti, yellow)..." id="searchInput" autocomplete="off" />
+      <button class="search-submit" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <!-- Search Empty State -->
+    <div class="search-empty-state" id="searchEmptyState" aria-live="polite" hidden>
+      <p>No matching products found for "<span id="searchEmptyQuery"></span>". Try searching for "waffle", "cotton", "kurti", "hoodie" or "set".</p>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home" aria-label="Hero banner">
+    <div class="hero-slides" id="heroSlides" aria-live="off">
+      <div class="hero-slide active" style="background-image: url('assets/images/womens-festive/womens-rust-3piece-cape-set-main.jpg')" role="img" aria-label="Indo-Western 3-piece festive fusion collection">
+        <div class="hero-slide-overlay"></div>
+      </div>
+      <div class="hero-slide" style="background-image: url('assets/images/mens-coords/mens-olive-waffle-coord-main.jpg')" role="img" aria-label="Men's relaxed textured cotton co-ord loungewear set">
+        <div class="hero-slide-overlay"></div>
+      </div>
+      <div class="hero-slide" style="background-image: url('assets/images/womens-kurtis/womens-navy-floral-pocket-kurti.jpg')" role="img" aria-label="Women's breathable daily cotton kurtis collection">
+        <div class="hero-slide-overlay"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Curated Collection 2026</div>
+      <h1 class="hero-title">
+        Everyday Comfort,<br/>
+        <span class="hero-accent">Timeless Charm.</span>
+      </h1>
+      <p class="hero-sub">From relaxed textured men's co-ords to pure cotton daily kurtis and graceful festive fusion wear — designed for comfort and modern Indian living.</p>
+      <div class="hero-btns">
+        <a href="shop.html" class="btn-primary">Shop All Products</a>
+        <a href="#collections" class="btn-ghost">View Categories</a>
+      </div>
+    </div>
+
+    <div class="hero-dots" id="heroDots" role="tablist" aria-label="Hero slide navigation">
+      <button class="dot active" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+      <button class="dot" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+      <button class="dot" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <section class="trust-strip" aria-label="Store highlights">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <svg class="trust-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        <div><strong>Free Shipping Above ₹999</strong><small>Delivered safely across India</small></div>
+      </div>
+      <div class="trust-div" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+        <div><strong>7-Day Easy Exchanges</strong><small>Hassle-free size replacement</small></div>
+      </div>
+      <div class="trust-div" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div><strong>Quality Fabric Checked</strong><small>Breathable cottons & fine georgettes</small></div>
+      </div>
+      <div class="trust-div" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <div><strong>Secure Payment Options</strong><small>UPI, Cards, Netbanking & COD</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES GRID ===== -->
+  <section class="section" id="collections" aria-labelledby="collections-heading">
+    <div class="section-head">
+      <span class="section-pill">OUR COLLECTIONS</span>
+      <h2 class="section-title" id="collections-heading">Explore By Category</h2>
+      <p class="section-sub">Browse our curated selections tailored for comfort, casual lounging, workdays, and festive occasions.</p>
+    </div>
+
+    <div class="collections-grid">
+      <!-- 1. Men's Co-ords (ONLY men's co-ord image) -->
+      <div class="col-card col-card-large">
+        <img src="assets/images/mens-coords/mens-olive-waffle-coord-main.jpg" alt="Men's textured cotton & waffle knit loungewear co-ord sets" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">MEN'S LOUNGEWEAR</span>
+          <h3>Co-Ord Sets</h3>
+          <p>Textured cotton and waffle knit shirt &amp; short sets</p>
+          <a href="shop.html?cat=mens-coords" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 2. Women's Daily Kurtis (ONLY women's kurti image) -->
+      <div class="col-card">
+        <img src="assets/images/womens-kurtis/womens-navy-floral-pocket-kurti.jpg" alt="Women's breathable cotton floral straight kurti" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">WOMEN'S ETHNIC</span>
+          <h3>Daily Cotton Kurtis</h3>
+          <p>Breathable prints with functional pockets</p>
+          <a href="shop.html?cat=womens-kurtis" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 3. Festive Fusion Sets (ONLY women's festive cape image) -->
+      <div class="col-card">
+        <img src="assets/images/womens-festive/womens-rust-3piece-cape-set-main.jpg" alt="Women's 3-piece crop top, palazzo and long cape jacket set" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">FESTIVE OCCASION</span>
+          <h3>Indo-Western Fusion</h3>
+          <p>3-Piece Cape, Crop Top &amp; Sharara sets</p>
+          <a href="shop.html?cat=festive-fusion" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 4. Kids & Teen Casuals (ONLY kids resort set image) -->
+      <div class="col-card">
+        <img src="assets/images/kids-youth/kids-boys-mint-geometric-resort-set.jpg" alt="Boys resort printed shirt and short co-ord set" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">KIDS &amp; TEEN</span>
+          <h3>Youth Casuals</h3>
+          <p>Graphic hoodies and printed resort sets</p>
+          <a href="shop.html?cat=kids-youth" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 5. Men's Essentials (ONLY men's tee image) -->
+      <div class="col-card">
+        <img src="assets/images/mens-essentials/mens-solid-black-crewneck-tee.jpg" alt="Men's classic solid black crewneck t-shirt" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">MEN'S CASUALS</span>
+          <h3>Everyday Essentials</h3>
+          <p>Solid crewneck tees, polos &amp; kurtas</p>
+          <a href="shop.html?cat=mens-essentials" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+
+      <!-- 6. Flared Anarkali & Dresses (ONLY women's anarkali image) -->
+      <div class="col-card">
+        <img src="assets/images/womens-kurtis/womens-teal-lace-anarkali.jpg" alt="Women's teal blue textured flared anarkali kurta" loading="lazy" />
+        <div class="col-overlay">
+          <span class="col-tag">FROCK &amp; ANARKALI</span>
+          <h3>Flared Kurtas</h3>
+          <p>Graceful lace textures and pastel silhouettes</p>
+          <a href="shop.html?cat=womens-kurtis" class="col-link">View Collection &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOGUE SECTIONS ===== -->
+  <section class="arrivals-section" id="arrivals" aria-labelledby="arrivals-heading">
+    <div class="arrivals-head">
+      <span class="section-pill">FRESH ARRIVALS</span>
+      <h2 class="section-title" id="arrivals-heading">Featured Collection</h2>
+      <p class="section-sub">Authentic designs photographed in our studio. True-to-life colors, premium fabrics, and exact fits.</p>
+    </div>
+
+    <!-- ── SECTION 1: MEN'S CO-ORD & LOUNGEWEAR SETS (ONLY MEN'S CO-ORDS) ── -->
+    <div class="cat-section" id="cat-mens-coords">
+      <div class="cat-section-header">
+        <div class="cat-section-label">
+          <div class="cat-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          </div>
+          <div>
+            <h3>Men's Co-Ord Loungewear Sets</h3>
+            <p>Mandarin Collar Henley Shirts &amp; Matching Short Sets in Waffle Knit &amp; Textured Cotton</p>
+          </div>
+        </div>
+        <span class="cat-count-badge">5 Styles</span>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Olive Green -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-coords/mens-olive-waffle-coord-main.jpg" alt="Men's Olive Green Textured Cotton Co-ord Short Set" loading="lazy" class="pcard-img-main" />
+            <img src="assets/images/mens-coords/mens-olive-waffle-coord-alt.jpg" alt="Olive Green Co-ord Set alternate view" loading="lazy" class="pcard-img-alt" />
+            <div class="pcard-badges"><span class="badge new">BESTSELLER</span></div>
+            <button class="pcard-wishlist" aria-label="Add Olive Green Co-ord Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Olive Green Textured Cotton Co-Ord Set" data-price="999" data-img="assets/images/mens-coords/mens-olive-waffle-coord-main.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Co-Ord Set</span>
+            <h3 class="pcard-name">Olive Green Textured Cotton Set</h3>
+            <p class="pcard-desc">Mandarin collar short-sleeve shirt with matching relaxed shorts.</p>
+            <div class="pcard-price"><span class="price-now">₹999</span><span class="price-was">₹1,499</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2: Dusty Rose Waffle -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-coords/mens-rose-waffle-coord-main.jpg" alt="Dusty Rose Waffle Knit Mandarin Collar Co-Ord Set" loading="lazy" class="pcard-img-main" />
+            <img src="assets/images/mens-coords/mens-rose-waffle-coord-alt.jpg" alt="Dusty Rose Waffle Set alternate angle" loading="lazy" class="pcard-img-alt" />
+            <div class="pcard-badges"><span class="badge new">WAFFLE WEAVE</span></div>
+            <button class="pcard-wishlist" aria-label="Add Dusty Rose Waffle Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Dusty Rose Waffle Knit Co-Ord Set" data-price="1099" data-img="assets/images/mens-coords/mens-rose-waffle-coord-main.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Co-Ord Set</span>
+            <h3 class="pcard-name">Dusty Rose Waffle Knit Set</h3>
+            <p class="pcard-desc">Breathable waffle texture with buttoned placket and elasticated shorts.</p>
+            <div class="pcard-price"><span class="price-now">₹1,099</span><span class="price-was">₹1,699</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3: Crisp White Waffle -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-coords/mens-white-waffle-coord-main.jpg" alt="Crisp White Waffle Knit Short & Shirt Co-Ord Set" loading="lazy" class="pcard-img-main" />
+            <img src="assets/images/mens-coords/mens-white-waffle-coord-alt.jpg" alt="Crisp White Waffle Set alternate view" loading="lazy" class="pcard-img-alt" />
+            <div class="pcard-badges"><span class="badge bestseller">SUMMER STAPLE</span></div>
+            <button class="pcard-wishlist" aria-label="Add Crisp White Waffle Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Crisp White Waffle Knit Co-Ord Set" data-price="1099" data-img="assets/images/mens-coords/mens-white-waffle-coord-main.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Co-Ord Set</span>
+            <h3 class="pcard-name">Crisp White Waffle Knit Set</h3>
+            <p class="pcard-desc">Lightweight pure white waffle knit tailored for weekend and resort wear.</p>
+            <div class="pcard-price"><span class="price-now">₹1,099</span><span class="price-was">₹1,699</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4: Warm Terracotta -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-coords/mens-tan-waffle-coord-main.jpg" alt="Terracotta Tan Waffle Knit Loungewear Set" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge sale">EARTH TONE</span></div>
+            <button class="pcard-wishlist" aria-label="Add Terracotta Waffle Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Terracotta Tan Waffle Knit Co-Ord Set" data-price="1099" data-img="assets/images/mens-coords/mens-tan-waffle-coord-main.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Co-Ord Set</span>
+            <h3 class="pcard-name">Terracotta Tan Waffle Set</h3>
+            <p class="pcard-desc">Earthy rust-brown shade crafted in premium soft cotton waffle fabric.</p>
+            <div class="pcard-price"><span class="price-now">₹1,099</span><span class="price-was">₹1,599</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: WOMEN'S DAILY & OCCASION KURTIS (ONLY WOMEN'S KURTIS) ── -->
+    <div class="cat-section cat-section-alt" id="cat-womens-kurtis">
+      <div class="cat-section-header">
+        <div class="cat-section-label">
+          <div class="cat-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l2 6-4 2v10H8V11L4 9l2-6z"/></svg>
+          </div>
+          <div>
+            <h3>Women's Everyday &amp; Printed Kurtis</h3>
+            <p>Pure Breathable Cottons, Functional Side Pockets, Floral Motifs &amp; A-Line Silhouettes</p>
+          </div>
+        </div>
+        <span class="cat-count-badge">6 Styles</span>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Navy Floral Straight -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-kurtis/womens-navy-floral-pocket-kurti.jpg" alt="Midnight Navy Floral Print Straight Cotton Kurti with Pockets" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">WITH POCKETS</span></div>
+            <button class="pcard-wishlist" aria-label="Add Navy Floral Kurti to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Midnight Navy Floral Pocket Kurti" data-price="699" data-img="assets/images/womens-kurtis/womens-navy-floral-pocket-kurti.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Daily Wear Kurti</span>
+            <h3 class="pcard-name">Midnight Navy Floral Kurti</h3>
+            <p class="pcard-desc">Straight-cut printed cotton kurti with side pocket and mandarin neck.</p>
+            <div class="pcard-price"><span class="price-now">₹699</span><span class="price-was">₹1,099</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2: Sunflower Yellow Floral A-Line -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-kurtis/womens-sunflower-yellow-kurti.jpg" alt="Sunflower Yellow Floral Print A-Line Kurti with Tassels" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge bestseller">POPULAR</span></div>
+            <button class="pcard-wishlist" aria-label="Add Sunflower Yellow Kurti to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Sunflower Yellow Floral Tassel Kurti" data-price="749" data-img="assets/images/womens-kurtis/womens-sunflower-yellow-kurti.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Ethnic Kurti</span>
+            <h3 class="pcard-name">Sunflower Yellow Floral Kurti</h3>
+            <p class="pcard-desc">V-neck yoke embroidery with decorative tassels on breathable cotton.</p>
+            <div class="pcard-price"><span class="price-now">₹749</span><span class="price-was">₹1,199</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3: Purple Orchid Geometric -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-kurtis/womens-purple-geometric-kurti.jpg" alt="Purple Orchid Geometric Bandhani Pattern Straight Kurti" loading="lazy" class="pcard-img-main" />
+            <button class="pcard-wishlist" aria-label="Add Purple Orchid Kurti to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Purple Orchid Geometric Kurti" data-price="699" data-img="assets/images/womens-kurtis/womens-purple-geometric-kurti.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Daily Wear Kurti</span>
+            <h3 class="pcard-name">Purple Orchid Geometric Kurti</h3>
+            <p class="pcard-desc">Comfortable daily wear cotton kurti with vertical pattern &amp; pocket.</p>
+            <div class="pcard-price"><span class="price-now">₹699</span><span class="price-was">₹1,099</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4: Pastel Embroidered Anarkali -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-kurtis/womens-white-pastel-kurti.jpg" alt="Off-White Pastel Threadwork Chikankari Style A-Line Kurti" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">ELEGANT</span></div>
+            <button class="pcard-wishlist" aria-label="Add Pastel White Kurti to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Pastel Threadwork White A-Line Kurti" data-price="849" data-img="assets/images/womens-kurtis/womens-white-pastel-kurti.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">A-Line Kurti</span>
+            <h3 class="pcard-name">Pastel Threadwork White Kurti</h3>
+            <p class="pcard-desc">Delicate multi-color vertical paisley embroidery on fine cotton fabric.</p>
+            <div class="pcard-price"><span class="price-now">₹849</span><span class="price-was">₹1,299</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 3: FESTIVE & INDO-WESTERN FUSION (ONLY FESTIVE CAPES & GOWNS) ── -->
+    <div class="cat-section" id="cat-festive-fusion">
+      <div class="cat-section-header">
+        <div class="cat-section-label">
+          <div class="cat-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <h3>Indo-Western Festive &amp; Fusion Sets</h3>
+            <p>Embroidered Crop Tops, Flowing Palazzo Pants, Floor-Length Capes &amp; Georgette Sets</p>
+          </div>
+        </div>
+        <span class="cat-count-badge">4 Styles</span>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Rust 3-piece -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-festive/womens-rust-3piece-cape-set-main.jpg" alt="Rust Orange Embroidered Crop Top, Palazzo and Georgette Shrug 3-Piece Set" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">3-PIECE SET</span></div>
+            <button class="pcard-wishlist" aria-label="Add Rust Fusion Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Rust Terracotta 3-Piece Shrug Set" data-price="1599" data-img="assets/images/womens-festive/womens-rust-3piece-cape-set-main.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Festive Fusion</span>
+            <h3 class="pcard-name">Rust Terracotta 3-Piece Shrug Set</h3>
+            <p class="pcard-desc">Embroidered bustier, flared palazzo trousers with long flowy georgette cape.</p>
+            <div class="pcard-price"><span class="price-now">₹1,599</span><span class="price-was">₹2,499</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2: Mustard Mirror Work -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-festive/womens-mustard-mirror-cape-set.jpg" alt="Mustard Yellow Mirror Work Crop Top, Sharara Pants and Cape Set" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge bestseller">MIRROR WORK</span></div>
+            <button class="pcard-wishlist" aria-label="Add Mustard Mirror Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Mustard Mirror-Work 3-Piece Cape Set" data-price="1699" data-img="assets/images/womens-festive/womens-mustard-mirror-cape-set.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Festive Fusion</span>
+            <h3 class="pcard-name">Mustard Mirror-Work Cape Set</h3>
+            <p class="pcard-desc">Detailed mirror-work embroidered top with flared pants &amp; matching jacket.</p>
+            <div class="pcard-price"><span class="price-now">₹1,699</span><span class="price-was">₹2,699</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3: Teal Chevron Zari -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-festive/womens-teal-chevron-zari-set.jpg" alt="Peacock Teal Chevron Zari Indo-Western Sharara Set with Long Shrug" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">ZARI WORK</span></div>
+            <button class="pcard-wishlist" aria-label="Add Teal Zari Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Peacock Teal Chevron Zari 3-Piece Set" data-price="1799" data-img="assets/images/womens-festive/womens-teal-chevron-zari-set.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Festive Fusion</span>
+            <h3 class="pcard-name">Peacock Teal Chevron Zari Set</h3>
+            <p class="pcard-desc">Chevron gold zari pattern long jacket over crop top &amp; pleated sharara.</p>
+            <div class="pcard-price"><span class="price-now">₹1,799</span><span class="price-was">₹2,899</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4: Monochrome Anarkali Gown -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/womens-festive/womens-monochrome-georgette-gown.jpg" alt="Monochrome Abstract Print Flared Georgette Anarkali Maxi Gown" loading="lazy" class="pcard-img-main" />
+            <button class="pcard-wishlist" aria-label="Add Monochrome Gown to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Monochrome Abstract Georgette Anarkali Gown" data-price="1299" data-img="assets/images/womens-festive/womens-monochrome-georgette-gown.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Evening Wear</span>
+            <h3 class="pcard-name">Monochrome Flared Georgette Gown</h3>
+            <p class="pcard-desc">V-neck long sleeves maxi anarkali with tie-up belt in flowy printed georgette.</p>
+            <div class="pcard-price"><span class="price-now">₹1,299</span><span class="price-was">₹1,999</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 4: KIDS & YOUTH CASUALS (ONLY KIDS & YOUTH) ── -->
+    <div class="cat-section cat-section-alt" id="cat-kids-youth">
+      <div class="cat-section-header">
+        <div class="cat-section-label">
+          <div class="cat-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div>
+            <h3>Kids &amp; Youth Streetwear</h3>
+            <p>Printed Resort Co-Ords, Graphic Hoodies &amp; Everyday Oversized Casuals</p>
+          </div>
+        </div>
+        <span class="cat-count-badge">4 Styles</span>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Mint Resort Set -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/kids-youth/kids-boys-mint-geometric-resort-set.jpg" alt="Boys Mint Green Geometric Print Shirt & Shorts Resort Set" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">SUMMER WEAR</span></div>
+            <button class="pcard-wishlist" aria-label="Add Mint Resort Set to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Boys Mint Geometric Resort Set" data-price="699" data-img="assets/images/kids-youth/kids-boys-mint-geometric-resort-set.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Kids Co-Ord</span>
+            <h3 class="pcard-name">Boys Mint Geometric Resort Set</h3>
+            <p class="pcard-desc">Collared short-sleeve resort shirt paired with comfortable mint shorts.</p>
+            <div class="pcard-price"><span class="price-now">₹699</span><span class="price-was">₹1,099</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2: Grey Paris Hoodie -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/kids-youth/kids-youth-paris-eiffel-grey-hoodie.jpg" alt="Grey Paris Eiffel Graphic Contrast Hooded Sweatshirt" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge bestseller">STREETWEAR</span></div>
+            <button class="pcard-wishlist" aria-label="Add Paris Hoodie to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Youth Paris Eiffel Graphic Hoodie" data-price="599" data-img="assets/images/kids-youth/kids-youth-paris-eiffel-grey-hoodie.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Youth Casuals</span>
+            <h3 class="pcard-name">Youth Paris Graphic Hoodie</h3>
+            <p class="pcard-desc">Soft fleece sweatshirt with contrast black hood &amp; Parisian landmark print.</p>
+            <div class="pcard-price"><span class="price-now">₹599</span><span class="price-was">₹999</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3: Navy Anime Hoodie -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/kids-youth/kids-youth-navy-anime-hoodie.jpg" alt="Navy Blue Anime Graphic Casual Streetwear Hoodie" loading="lazy" class="pcard-img-main" />
+            <button class="pcard-wishlist" aria-label="Add Navy Anime Hoodie to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Navy Anime Graphic Hoodie" data-price="599" data-img="assets/images/kids-youth/kids-youth-navy-anime-hoodie.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Youth Casuals</span>
+            <h3 class="pcard-name">Navy Anime Graphic Hoodie</h3>
+            <p class="pcard-desc">Drop-shoulder navy hoodie with contrast anime graphic print.</p>
+            <div class="pcard-price"><span class="price-now">₹599</span><span class="price-was">₹999</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4: Big Hero Boxy Tee -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/kids-youth/kids-youth-big-hero-oversized-tee.jpg" alt="Big Hero Graphic Drop-Shoulder Oversized T-Shirt" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge sale">OVERSIZED FIT</span></div>
+            <button class="pcard-wishlist" aria-label="Add Big Hero Tee to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Big Hero Oversized Graphic T-Shirt" data-price="449" data-img="assets/images/kids-youth/kids-youth-big-hero-oversized-tee.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Youth Casuals</span>
+            <h3 class="pcard-name">Big Hero Oversized Graphic Tee</h3>
+            <p class="pcard-desc">Boxy fit cotton graphic tee with contrast sleeve color blocking.</p>
+            <div class="pcard-price"><span class="price-now">₹449</span><span class="price-was">₹749</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 5: MEN'S CASUAL ESSENTIALS & TRADITIONALS (ONLY MEN'S ESSENTIALS) ── -->
+    <div class="cat-section" id="cat-mens-essentials">
+      <div class="cat-section-header">
+        <div class="cat-section-label">
+          <div class="cat-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <div>
+            <h3>Men's Essentials &amp; Heritage Wear</h3>
+            <p>Everyday Solid Tees, Half-Zip Polos &amp; Hand-Painted Folk Motifs Kurta Sets</p>
+          </div>
+        </div>
+        <span class="cat-count-badge">3 Styles</span>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Classic Black Tee -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-essentials/mens-solid-black-crewneck-tee.jpg" alt="Men's Solid Black Premium Crewneck T-Shirt" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">STAPLE</span></div>
+            <button class="pcard-wishlist" aria-label="Add Black Tee to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Men's Classic Solid Black Tee" data-price="499" data-img="assets/images/mens-essentials/mens-solid-black-crewneck-tee.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Casual</span>
+            <h3 class="pcard-name">Solid Black Crewneck Tee</h3>
+            <p class="pcard-desc">Heavyweight combed cotton minimal crewneck t-shirt with tailored fit.</p>
+            <div class="pcard-price"><span class="price-now">₹499</span><span class="price-was">₹799</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2: Half-Zip Polo -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-essentials/mens-heather-grey-half-zip-polo.jpg" alt="Men's Heather Grey Half-Zip Textured Polo T-Shirt" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge bestseller">ZIP POLO</span></div>
+            <button class="pcard-wishlist" aria-label="Add Grey Polo to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Heather Grey Half-Zip Polo" data-price="649" data-img="assets/images/mens-essentials/mens-heather-grey-half-zip-polo.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Men's Casual</span>
+            <h3 class="pcard-name">Heather Grey Half-Zip Polo</h3>
+            <p class="pcard-desc">Textured knit fabric featuring a silver metal zipper and clean ribbed collar.</p>
+            <div class="pcard-price"><span class="price-now">₹649</span><span class="price-was">₹999</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3: Madhubani Painted Kurta -->
+        <div class="product-card">
+          <div class="pcard-img-wrap">
+            <img src="assets/images/mens-essentials/mens-madhubani-folk-kurta-set.jpg" alt="Off-White Folk Art Border Painted Long Kurta" loading="lazy" class="pcard-img-main" />
+            <div class="pcard-badges"><span class="badge new">HERITAGE WEAVE</span></div>
+            <button class="pcard-wishlist" aria-label="Add Folk Kurta to wishlist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="pcard-cart-btn add-cart" data-name="Off-White Folk Art Printed Kurta" data-price="899" data-img="assets/images/mens-essentials/mens-madhubani-folk-kurta-set.jpg">Add to Cart</button>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-cat">Heritage Kurta</span>
+            <h3 class="pcard-name">Off-White Folk Art Printed Kurta</h3>
+            <p class="pcard-desc">Natural cotton kurta with traditional painted border motifs and wooden buttons.</p>
+            <div class="pcard-price"><span class="price-now">₹899</span><span class="price-was">₹1,399</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== PROMO HIGHLIGHT ===== -->
+  <section class="promo-section" aria-label="Seasonal Offer">
+    <div class="promo-inner">
+      <div class="promo-text">
+        <span class="promo-tag">LIMITED PERIOD OFFER</span>
+        <h2>Fresh Cuts, Pure Cottons</h2>
+        <p>Explore our latest arrivals in waffle knit loungewear and everyday printed kurtis. Enjoy flat 10% off with coupon code <strong>MAURYA10</strong> at checkout.</p>
+        <a href="shop.html" class="btn-primary">Shop The Collection</a>
+      </div>
+      <div class="promo-seal" aria-hidden="true">
+        <div class="promo-ring">
+          <img src="assets/logo/maurya-collection-icon.png" alt="Maurya Collection Seal" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STYLE GALLERY / LOOKBOOK ===== -->
+  <section class="section gallery-section" aria-labelledby="gallery-heading">
+    <div class="section-head">
+      <span class="section-pill">LOOKBOOK</span>
+      <h2 class="section-title" id="gallery-heading">Style In Motion</h2>
+      <p class="section-sub">A glimpse into how our comfortable co-ords, daily kurtis, and fusion pieces fit into real life.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item g-tall">
+        <img src="assets/images/mens-coords/mens-olive-waffle-coord-main.jpg" alt="Olive green loungewear short set" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/womens-festive/womens-rust-3piece-cape-set-main.jpg" alt="Rust terracotta cape fusion set" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/womens-kurtis/womens-navy-floral-pocket-kurti.jpg" alt="Navy floral cotton straight kurti" loading="lazy" />
+      </div>
+      <div class="gallery-item g-wide">
+        <img src="assets/images/womens-festive/womens-mustard-mirror-cape-set.jpg" alt="Mustard yellow mirror-work cape set" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/kids-youth/kids-boys-mint-geometric-resort-set.jpg" alt="Boys mint green resort set" loading="lazy" />
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/mens-coords/mens-white-waffle-coord-main.jpg" alt="White waffle knit co-ord set" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CUSTOMER REVIEWS ===== -->
+  <section class="section testimonials-section" aria-labelledby="testimonials-heading">
+    <div class="section-head">
+      <span class="section-pill">REAL FEEDBACK</span>
+      <h2 class="section-title" id="testimonials-heading">What Our Customers Say</h2>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+      <div class="tcard">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"Ordered the waffle knit co-ord set in olive green. The fabric is lightweight, breathable, and holds its shape really well after washing. Great for working from home."</p>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:#701a2b" aria-hidden="true">A</div>
+          <div><strong>Aman Srivastava</strong><small>Bought Olive Waffle Set</small></div>
+        </div>
+      </div>
+      <div class="tcard featured">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"The 3-piece rust cape set is simply gorgeous! Got so many compliments at my cousin's sangeet function. The georgette flare has a very graceful fall."</p>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:#52121e" aria-hidden="true">S</div>
+          <div><strong>Sneha Mukherjee</strong><small>Bought Rust 3-Piece Cape Set</small></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"The navy floral kurti is so soft and has actual functional pockets on the side! Perfect for regular office wear. Will definitely buy more colors."</p>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:#701a2b" aria-hidden="true">P</div>
+          <div><strong>Pooja Deshmukh</strong><small>Bought Navy Floral Kurti</small></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"Got the mint resort set for my nephew. The geometric print looks modern, and the cotton is soft on skin. Fast delivery and neat packaging."</p>
+        <div class="tcard-author">
+          <div class="tcard-av" style="background:#52121e" aria-hidden="true">R</div>
+          <div><strong>Rohit Bansal</strong><small>Bought Mint Kids Set</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT US ===== -->
+  <section class="section about-section" id="about" aria-labelledby="about-heading">
+    <div class="about-inner">
+      <div class="about-visual">
+        <div class="about-img-frame">
+          <img src="assets/logo/maurya-collection-icon.png" alt="Maurya Collection Story" />
+        </div>
+        <div class="about-stats-row" role="list">
+          <div class="astat" role="listitem"><span class="astat-n">100%</span><span class="astat-l">Real Photos</span></div>
+          <div class="astat" role="listitem"><span class="astat-n">Pure</span><span class="astat-l">Cotton Weaves</span></div>
+          <div class="astat" role="listitem"><span class="astat-n">7-Day</span><span class="astat-l">Easy Exchange</span></div>
+          <div class="astat" role="listitem"><span class="astat-n">Pan-India</span><span class="astat-l">Delivery</span></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-pill">OUR PHILOSOPHY</span>
+        <h2 class="section-title" id="about-heading">Clothing Made For Living In</h2>
+        <p>At Maurya Collection, we believe great clothing shouldn't be complicated or uncomfortable. Whether you're relaxing at home in our breathable waffle-knit co-ords, heading out for work in our pocketed cotton kurtis, or celebrating special moments in our graceful fusion sets — each piece is designed to feel effortless.</p>
+        <p>We work directly with responsible fabric manufacturers to ensure consistent quality, comfortable fits, and transparent pricing without artificial markups.</p>
+        <div class="about-values">
+          <div class="avalue">
+            <div class="avalue-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><strong>Fabric Integrity</strong><p>Breathable cottons, soft-touch waffle textures and lightweight georgettes.</p></div>
+          </div>
+          <div class="avalue">
+            <div class="avalue-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div><strong>Functional Details</strong><p>Real pockets, elasticated waistbands, and comfortable collars built for real use.</p></div>
+          </div>
+        </div>
+        <a href="shop.html" class="btn-primary">Browse The Shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
+    <div class="section-head">
+      <span class="section-pill">HELP &amp; ORDERS</span>
+      <h2 class="section-title" id="contact-heading">Get in Touch</h2>
+      <p class="section-sub">Have a question about sizing, custom orders, or shipping? Reach out to us directly.</p>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-cards">
+        <div class="ccard">
+          <div class="ccard-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h4>Call Support</h4>
+          <a href="tel:+916205609260" class="ccard-contact-link">+91 62056 09260</a>
+          <small>Mon–Sat, 10:00 AM – 7:00 PM</small>
+        </div>
+        <div class="ccard">
+          <div class="ccard-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <h4>Email Enquiries</h4>
+          <a href="mailto:info@mauryacollection.in" class="ccard-contact-link">info@mauryacollection.in</a>
+          <small>Replies within 24 hours</small>
+        </div>
+        <div class="ccard">
+          <div class="ccard-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h4>Location</h4>
+          <p class="ccard-contact-link" style="color:var(--charcoal);">Maurya Collection Store</p>
+          <small>India</small>
+        </div>
+        <div class="ccard">
+          <div class="ccard-icon-wrap" style="color:#25D366;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </div>
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20would%20like%20to%20enquire%20about%20your%20products" class="ccard-wa-btn" target="_blank" rel="noopener noreferrer">Chat on WhatsApp &rarr;</a>
+          <small>Instant product enquiries</small>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+        <div class="form-row">
+          <div class="form-grp">
+            <label for="fname">Your Name <span class="required" aria-hidden="true">*</span></label>
+            <input type="text" id="fname" name="fname" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
+            <span class="field-error" id="fname-error" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-grp">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="fphone" placeholder="+91 62056 XXXXX" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-grp">
+          <label for="femail">Email Address <span class="required" aria-hidden="true">*</span></label>
+          <input type="email" id="femail" name="femail" placeholder="name@example.com" required autocomplete="email" />
+          <span class="field-error" id="femail-error" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-grp">
+          <label for="fsubject">Subject</label>
+          <select id="fsubject" name="fsubject">
+            <option value="">Select an enquiry type...</option>
+            <option value="size">Size &amp; Fit Assistance</option>
+            <option value="order">Order Tracking &amp; Delivery</option>
+            <option value="exchange">Exchange or Return Request</option>
+            <option value="bulk">Bulk / Wholesale Query</option>
+            <option value="other">General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-grp">
+          <label for="fmsg">Message <span class="required" aria-hidden="true">*</span></label>
+          <textarea id="fmsg" name="fmsg" rows="4" placeholder="How can we assist you?" required></textarea>
+          <span class="field-error" id="fmsg-error" role="alert" aria-live="polite"></span>
+        </div>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>
+          Thank you for getting in touch. We have received your message and will respond within 24 hours.
+        </div>
+        <button type="submit" class="btn-primary btn-full" id="contactSubmit">Submit Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <img src="assets/logo/maurya-collection-icon.png" alt="Maurya Collection" width="38" height="38" />
+          </div>
+          <div>
+            <span class="footer-brand-name">Maurya Collection</span>
+            <span class="footer-brand-tag">Apparel &amp; Ethnic Wear</span>
+          </div>
+        </div>
+        <p class="footer-desc">Curating comfortable everyday loungewear, breathable cotton kurtis, and contemporary festive wear for modern Indian wardrobes.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/mauryacollection" class="fsocial" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/mauryacollection" class="fsocial" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20would%20like%20to%20enquire%20about%20your%20products" class="fsocial" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="shop.html">Shop All (158 Items)</a></li>
+          <li><a href="#collections">All Categories</a></li>
+          <li><a href="#arrivals">Featured Products</a></li>
+          <li><a href="#about">About Our Fabrics</a></li>
+          <li><a href="#contact">Contact &amp; Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="shop.html?cat=mens-coords">Men's Co-Ord Sets</a></li>
+          <li><a href="shop.html?cat=womens-kurtis">Women's Daily Kurtis</a></li>
+          <li><a href="shop.html?cat=festive-fusion">Festive Fusion Sets</a></li>
+          <li><a href="shop.html?cat=kids-youth">Kids &amp; Youth Wear</a></li>
+          <li><a href="shop.html?cat=mens-essentials">Men's Essentials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#contact">Size &amp; Fit Guide</a></li>
+          <li><a href="#contact">Shipping &amp; Delivery</a></li>
+          <li><a href="#contact">Returns &amp; Exchanges</a></li>
+          <li><a href="#contact">Track Order</a></li>
+          <li><a href="#contact">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maurya Collection. All rights reserved. Crafted with care in India.</p>
+      <div class="footer-pay">
+        <span>Payment Accepted:</span>
+        <span class="pay-chip">UPI</span>
+        <span class="pay-chip">Cards</span>
+        <span class="pay-chip">Netbanking</span>
+        <span class="pay-chip">COD</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile bottom navigation">
+    <a href="#home" class="mbn-item active" data-page="home" aria-label="Home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="shop.html" class="mbn-item" data-page="shop-page" aria-label="Shop All">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Shop</span>
+    </a>
+    <a href="#arrivals" class="mbn-item mbn-center" data-page="shop" aria-label="Featured">
+      <div class="mbn-center-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <span>Featured</span>
+    </a>
+    <a href="#about" class="mbn-item" data-page="about" aria-label="Story">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>About</span>
+    </a>
+    <a href="#contact" class="mbn-item" data-page="account" aria-label="Contact">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay-bg" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-label="Shopping bag" aria-modal="true">
+    <div class="cart-head">
+      <h3>Your Bag <span id="cartItemCount">(0)</span></h3>
+      <button class="cart-close-btn" id="cartClose" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty-state">
+        <div class="cart-empty-icon" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h4>Your bag is currently empty</h4>
+        <p>Explore our latest co-ords, kurtis, and festive sets to get started.</p>
+        <button class="btn-primary" id="cartShopNow">Browse Products</button>
+      </div>
+    </div>
+    <div class="cart-foot" id="cartFoot">
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div class="summary-row"><span>Standard Delivery</span><span class="free-del" id="cartDelivery">FREE</span></div>
+        <div class="summary-row total-row"><span>Total Amount</span><span id="cartTotal">₹0</span></div>
+      </div>
+      <button class="btn-primary btn-full">Proceed to Checkout &rarr;</button>
+      <p class="cart-secure-note">Encrypted &amp; secure checkout</p>
+    </div>
+  </aside>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- FLOATING WHATSAPP BUTTON (LEFT SIDE) -->
+  <a href="https://wa.me/916205609260?text=Hi%20Maurya%20Collection,%20I%20would%20like%20to%20enquire%20about%20your%20products" class="whatsapp-float-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat with Maurya Collection on WhatsApp">
+    <div class="whatsapp-pulse-ring" aria-hidden="true"></div>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

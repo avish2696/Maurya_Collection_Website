@@ -1,0 +1,30 @@
+/* ================================================
+   TEXT RENDERING & ACCESSIBILITY OPTIMIZATIONS
+   Clean typography & contrast without destructive overrides
+   ================================================ */
+
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure legible base fonts */
+body {
+  color: #1a1f24;
+}
+
+/* Prevent text overflow */
+p, span, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Touch-friendly inputs prevent auto-zoom on iOS */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  font-size: 16px;
+}

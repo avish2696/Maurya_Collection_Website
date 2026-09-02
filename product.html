@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Product Details | Maurya Collection</title>
+  <meta name="description" id="pageDesc" content="Shop authentic Indian ethnic wear at Maurya Collection." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/favicon/maurya-collection-icon.svg" />
+  <link rel="shortcut icon" href="public/favicon/maurya-collection-icon.svg" />
+  <link rel="apple-touch-icon" href="public/images/brand/maurya-collection-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" id="productSchema">{}</script>
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      overflow-x: hidden;
+      max-width: 100vw;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px; /* space for fixed bottom bar */
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; font-family: inherit; }
+
+    /* ─── CSS VARS ─── */
+    :root {
+      --primary: #7a001e;
+      --primary-hover: #990026;
+      --accent: #d97706;
+      --dark: #0f172a;
+      --charcoal: #334155;
+      --muted: #64748b;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --green: #16a34a;
+      --wa-green: #25d366;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    /* ─── STICKY HEADER ─── */
+    .pdp-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: var(--shadow-sm);
+    }
+    .pdp-header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pdp-header-left { display: flex; align-items: center; gap: 10px; }
+    .pdp-header-right { display: flex; align-items: center; gap: 6px; }
+    .pdp-icon-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark);
+      position: relative;
+      transition: background 0.15s;
+    }
+    .pdp-icon-btn:hover { background: #f1f5f9; }
+    .pdp-logo img { height: 32px; width: auto; object-fit: contain; }
+    .pdp-cart-badge {
+      position: absolute; top: 4px; right: 4px;
+      background: var(--primary); color: #fff;
+      font-size: 0.6rem; font-weight: 800;
+      min-width: 16px; height: 16px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 3px; border: 1.5px solid var(--white);
+    }
+
+    /* ─── BREADCRUMB ─── */
+    .pdp-breadcrumb {
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+      overflow-x: auto; white-space: nowrap;
+      scrollbar-width: none;
+      border-bottom: 1px solid #f1f5f9;
+      background: var(--white);
+    }
+    .pdp-breadcrumb::-webkit-scrollbar { display: none; }
+    .pdp-breadcrumb a { color: var(--charcoal); font-weight: 500; }
+    .pdp-breadcrumb span { color: #cbd5e1; font-size: 0.65rem; }
+    .pdp-breadcrumb .bc-current { color: var(--dark); font-weight: 700; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+
+    /* ─── PAGE WRAPPER ─── */
+    .pdp-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 14px 20px;
+    }
+
+    /* ─── TWO-COLUMN GRID (desktop) ─── */
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .pdp-grid { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    /* ─── GALLERY COLUMN ─── */
+    .gallery-col { display: flex; flex-direction: column; gap: 10px; }
+    @media (min-width: 769px) {
+      .gallery-col { position: sticky; top: 80px; }
+    }
+
+    /* ─── HERO IMAGE ─── */
+    .hero-img-card {
+      background: #faf8f5;
+      border: 1px solid #ede8e1;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/5;
+    }
+    @media (max-width: 480px) {
+      .hero-img-card { aspect-ratio: 3/4; border-radius: var(--radius-lg); }
+    }
+    .hero-img-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform 0.4s ease;
+    }
+    .hero-img-card:hover img { transform: scale(1.03); }
+    .hero-cat-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      font-size: 0.65rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #1e293b;
+      padding: 4px 10px; border-radius: 999px;
+      z-index: 2;
+    }
+    .hero-wish-btn {
+      position: absolute; top: 12px; right: 12px;
+      width: 38px; height: 38px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s; z-index: 2;
+    }
+    .hero-wish-btn.active { color: #e11d48; background: #ffe4e6; border-color: #fda4af; }
+
+    /* ─── THUMBNAIL ROW ─── */
+    .thumb-row {
+      display: flex; gap: 8px;
+      overflow-x: auto; padding: 2px 0 4px;
+      scrollbar-width: none;
+    }
+    .thumb-row::-webkit-scrollbar { display: none; }
+    .thumb-item {
+      width: 68px; height: 68px; flex-shrink: 0;
+      border: 2px solid #ede8e1;
+      border-radius: var(--radius-sm);
+      cursor: pointer; overflow: hidden;
+      transition: border-color 0.2s;
+      background: #faf8f5;
+    }
+    .thumb-item.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(217,119,6,0.2); }
+    .thumb-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+    /* ─── DETAILS COLUMN ─── */
+    .details-col {
+      display: flex; flex-direction: column; gap: 14px;
+      padding-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .details-col { gap: 12px; padding-top: 14px; }
+    }
+
+    /* Category + Rating */
+    .cat-rating-row {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 6px;
+    }
+    .cat-label {
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #b45309;
+    }
+    .rating-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.8rem; font-weight: 700; color: var(--dark);
+    }
+    .rating-star { color: #f59e0b; }
+    .rating-count { color: var(--muted); font-weight: 500; font-size: 0.75rem; }
+
+    /* Product Title */
+    .pdp-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 700;
+      color: #1a1a2e;
+      line-height: 1.25;
+    }
+
+    /* Price Box */
+    .price-row {
+      display: flex; align-items: baseline;
+      gap: 10px; flex-wrap: wrap;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .price-now {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 900; color: var(--primary);
+    }
+    .price-mrp {
+      font-size: 1rem; color: #94a3b8;
+      text-decoration: line-through; font-weight: 500;
+    }
+    .price-off {
+      background: #dcfce7; color: #15803d;
+      font-size: 0.72rem; font-weight: 800;
+      padding: 3px 8px; border-radius: 999px;
+      margin-left: auto;
+    }
+
+    /* Spec Chips */
+    .spec-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .spec-chip {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      display: flex; flex-direction: column; gap: 2px;
+      flex: 1; min-width: 100px;
+    }
+    .spec-chip-label {
+      font-size: 0.62rem; font-weight: 700;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .spec-chip-val { font-size: 0.82rem; font-weight: 700; color: var(--dark); }
+
+    /* Size Selector */
+    .size-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .size-block-top {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .size-block-label {
+      font-size: 0.82rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em; color: var(--charcoal);
+    }
+    .size-guide-link {
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--primary); background: none;
+      text-decoration: underline;
+    }
+    .sizes-wrap {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .sz-btn {
+      min-width: 50px; height: 42px;
+      padding: 0 12px;
+      border: 2px solid #e2e8f0; border-radius: var(--radius-sm);
+      background: #fafafa; color: #334155;
+      font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s; cursor: pointer;
+    }
+    .sz-btn:hover { border-color: var(--primary); background: #fff5f7; color: var(--primary); }
+    .sz-btn.active {
+      border-color: var(--primary); background: var(--primary);
+      color: var(--white); box-shadow: 0 3px 10px rgba(122,0,30,0.22);
+    }
+    .size-err {
+      font-size: 0.72rem; color: #ef4444; font-weight: 700; display: none;
+    }
+
+    /* Quantity */
+    .qty-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 10px; border-top: 1px solid #f1f5f9;
+    }
+    .qty-counter {
+      display: flex; align-items: center;
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden; background: #fafafa;
+    }
+    .qty-btn {
+      width: 40px; height: 40px; background: transparent;
+      font-size: 1.1rem; font-weight: 800; color: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .qty-btn:hover { background: #e2e8f0; }
+    .qty-val {
+      width: 40px; text-align: center;
+      font-size: 0.95rem; font-weight: 800; color: var(--dark);
+    }
+
+    /* Action Buttons */
+    .pdp-ctas { display: flex; flex-direction: column; gap: 10px; }
+    .btn-buy-now {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, #7a001e 0%, #a30028 100%);
+      color: var(--white); border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 6px 20px rgba(122,0,30,0.22);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-buy-now:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(122,0,30,0.3); }
+    .btn-add-bag {
+      width: 100%; padding: 13px;
+      background: var(--white); color: var(--dark);
+      border: 2px solid #cbd5e1; border-radius: var(--radius-md);
+      font-size: 0.9rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.15s;
+    }
+    .btn-add-bag:hover { border-color: var(--dark); background: #f8fafc; }
+    .btn-wa {
+      width: 100%; padding: 13px;
+      background: var(--wa-green); color: var(--white);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-wa:hover { background: #1da851; }
+
+    /* Trust Badges */
+    .trust-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .trust-box {
+      background: #f8fafc; border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .trust-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .trust-text strong { display: block; font-size: 0.75rem; font-weight: 800; color: var(--dark); }
+    .trust-text span { font-size: 0.68rem; color: var(--muted); }
+
+    /* ─── INFO CARDS ─── */
+    .info-section {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 24px;
+      margin-top: 24px;
+    }
+    .info-section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem; color: var(--dark);
+      margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .info-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 600px) {
+      .info-cards-grid { grid-template-columns: 1fr; gap: 10px; }
+    }
+    .info-card {
+      background: #f8fafc; border: 1px solid #edf2f7;
+      border-radius: var(--radius-md); padding: 14px 16px;
+    }
+    .info-card h4 {
+      font-size: 0.78rem; font-weight: 800;
+      color: var(--primary); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .info-card p, .info-card ul {
+      font-size: 0.84rem; color: var(--charcoal); line-height: 1.6;
+    }
+    .info-card ul { padding-left: 16px; }
+    .info-card li { margin-bottom: 4px; }
+
+    /* ─── SIMILAR PRODUCTS ─── */
+    .similar-section { margin-top: 32px; }
+    .similar-head {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 14px;
+    }
+    .similar-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.4rem; color: var(--dark);
+    }
+    .similar-see-all {
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--primary);
+    }
+    .similar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 480px) {
+      .similar-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+    .sim-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-md); overflow: hidden;
+      color: inherit; display: flex; flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .sim-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .sim-card-img {
+      aspect-ratio: 3/4; background: #faf8f5;
+      overflow: hidden;
+    }
+    .sim-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .sim-card-body { padding: 10px 12px 12px; }
+    .sim-cat { font-size: 0.62rem; color: #b45309; font-weight: 700; margin-bottom: 3px; }
+    .sim-name {
+      font-size: 0.8rem; font-weight: 700; color: var(--dark);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+    .sim-price { font-size: 0.9rem; font-weight: 900; color: var(--primary); }
+
+    /* ─── FIXED BOTTOM CTA BAR ─── */
+    .bottom-cta-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 10px 14px;
+      gap: 10px;
+      z-index: 300;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.07);
+    }
+    @media (max-width: 768px) {
+      .bottom-cta-bar { display: flex; }
+      .pdp-ctas { display: none; } /* hide inline CTAs on mobile, use bottom bar */
+    }
+    .bcta-btn {
+      flex: 1; padding: 13px 8px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .bcta-wa { background: var(--wa-green); color: var(--white); }
+    .bcta-buy { background: var(--primary); color: var(--white); }
+
+    /* ─── TOAST ─── */
+    .pdp-toast {
+      position: fixed; bottom: 90px; left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--dark); color: var(--white);
+      padding: 10px 22px; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 700;
+      opacity: 0; pointer-events: none;
+      transition: all 0.25s ease; z-index: 500;
+      white-space: nowrap;
+    }
+    .pdp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ─── SIZE GUIDE MODAL ─── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 400;
+      align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-sheet {
+      background: var(--white);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      padding: 20px 18px 32px;
+      width: 100%; max-width: 500px;
+      max-height: 85vh; overflow-y: auto;
+    }
+    .modal-sheet h3 {
+      font-size: 1rem; font-weight: 800;
+      margin-bottom: 14px; color: var(--dark);
+    }
+    .modal-sheet table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .modal-sheet th, .modal-sheet td { padding: 8px 10px; border: 1px solid var(--border); }
+    .modal-sheet th { background: #f8fafc; font-weight: 800; color: var(--charcoal); }
+    .modal-close {
+      display: block; width: 100%; margin-top: 16px;
+      padding: 12px; background: var(--primary); color: var(--white);
+      border-radius: var(--radius-md); font-weight: 700; font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="pdp-header">
+    <div class="pdp-header-inner">
+      <div class="pdp-header-left">
+        <button class="pdp-icon-btn" onclick="history.back()" aria-label="Go back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        </button>
+        <a href="index.html" class="pdp-logo">
+          <img src="assets/logo/maurya-collection-logo.png" alt="Maurya Collection" />
+        </a>
+      </div>
+      <div class="pdp-header-right">
+        <a href="shop.html" class="pdp-icon-btn" aria-label="Shop">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </a>
+        <a href="checkout.html" class="pdp-icon-btn" aria-label="Cart" style="position:relative;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="pdp-cart-badge" id="cartCountBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── BREADCRUMB ── -->
+  <nav class="pdp-breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <a href="shop.html">Shop</a>
+    <span>›</span>
+    <span id="bcCat">Collection</span>
+    <span>›</span>
+    <span class="bc-current" id="bcProduct">Product</span>
+  </nav>
+
+  <!-- ── PRODUCT MAIN ── -->
+  <main class="pdp-main">
+    <div class="pdp-grid">
+
+      <!-- GALLERY -->
+      <div class="gallery-col">
+        <div class="hero-img-card">
+          <span class="hero-cat-tag" id="heroCatTag">MAURYA</span>
+          <button class="hero-wish-btn" id="wishBtn" aria-label="Wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img id="mainImg" src="" alt="Product" onerror="this.src='public/images/brand/maurya-collection-icon.png'" />
+        </div>
+        <div class="thumb-row" id="thumbRow"></div>
+      </div>
+
+      <!-- DETAILS -->
+      <div class="details-col">
+
+        <!-- Category & Rating -->
+        <div class="cat-rating-row">
+          <span class="cat-label" id="catLabel">COLLECTION</span>
+          <div class="rating-pill">
+            <span class="rating-star">★</span>
+            <span id="ratingVal">4.8</span>
+            <span class="rating-count" id="ratingCount">(214)</span>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="pdp-title" id="prodTitle">Product Name</h1>
+
+        <!-- Price -->
+        <div class="price-row">
+          <span class="price-now" id="pNow">₹545</span>
+          <span class="price-mrp" id="pMrp">₹899</span>
+          <span class="price-off" id="pOff">39% OFF</span>
+        </div>
+
+        <!-- Specs -->
+        <div class="spec-chips">
+          <div class="spec-chip">
+            <span class="spec-chip-label">Fabric</span>
+            <span class="spec-chip-val" id="specFabric">Premium Mix</span>
+          </div>
+          <div class="spec-chip">
+            <span class="spec-chip-label">SKU</span>
+            <span class="spec-chip-val" id="specSku">MC-0001</span>
+          </div>
+          <div class="spec-chip">
+            <span class="spec-chip-label">Status</span>
+            <span class="spec-chip-val" style="color:#16a34a;">✓ In Stock</span>
+          </div>
+        </div>
+
+        <!-- Size Selector -->
+        <div class="size-block">
+          <div class="size-block-top">
+            <span class="size-block-label">Select Size <span style="color:#ef4444">*</span></span>
+            <button class="size-guide-link" id="sizeGuideBtn">Size Guide</button>
+          </div>
+          <div class="sizes-wrap" id="sizesWrap"></div>
+          <p class="size-err" id="sizeErr">⚠ Please select a size to continue</p>
+
+          <!-- Quantity -->
+          <div class="qty-row">
+            <span class="size-block-label">Quantity</span>
+            <div class="qty-counter">
+              <button class="qty-btn" id="qtyMinus" aria-label="Less">−</button>
+              <span class="qty-val" id="qtyNum">1</span>
+              <button class="qty-btn" id="qtyPlus" aria-label="More">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons (Desktop) -->
+        <div class="pdp-ctas">
+          <button class="btn-buy-now" id="btnBuyNow">⚡ Buy Now — Checkout Instantly</button>
+          <button class="btn-add-bag" id="btnAddBag">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Shopping Bag
+          </button>
+          <button class="btn-wa" id="btnWA">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Order Direct on WhatsApp
+          </button>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-grid">
+          <div class="trust-box">
+            <span class="trust-icon">🚚</span>
+            <div class="trust-text">
+              <strong>Free Delivery</strong>
+              <span>Orders above ₹999</span>
+            </div>
+          </div>
+          <div class="trust-box">
+            <span class="trust-icon">🔄</span>
+            <div class="trust-text">
+              <strong>7-Day Exchange</strong>
+              <span>Size replacement</span>
+            </div>
+          </div>
+          <div class="trust-box">
+            <span class="trust-icon">💵</span>
+            <div class="trust-text">
+              <strong>Cash on Delivery</strong>
+              <span>Pay on arrival</span>
+            </div>
+          </div>
+          <div class="trust-box">
+            <span class="trust-icon">⭐</span>
+            <div class="trust-text">
+              <strong>Verified Quality</strong>
+              <span>Checked before dispatch</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /details-col -->
+    </div><!-- /pdp-grid -->
+
+    <!-- INFO CARDS -->
+    <section class="info-section">
+      <h2 class="info-section-title">Product Information &amp; Details</h2>
+      <div class="info-cards-grid" id="infoCards"></div>
+    </section>
+
+    <!-- SIMILAR PRODUCTS -->
+    <section class="similar-section">
+      <div class="similar-head">
+        <h2 class="similar-title">More from This Collection</h2>
+        <a href="shop.html" class="similar-see-all">View All →</a>
+      </div>
+      <div class="similar-grid" id="similarGrid"></div>
+    </section>
+  </main>
+
+  <!-- ── FIXED MOBILE BOTTOM CTA BAR ── -->
+  <div class="bottom-cta-bar">
+    <button class="bcta-btn bcta-wa" id="mBtnWA">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      WhatsApp
+    </button>
+    <button class="bcta-btn bcta-buy" id="mBtnBuy">
+      ⚡ Add &amp; Buy Now
+    </button>
+  </div>
+
+  <!-- SIZE GUIDE MODAL -->
+  <div class="modal-overlay" id="sizeModal">
+    <div class="modal-sheet">
+      <h3>📏 Size Guide — Maurya Collection</h3>
+      <table>
+        <thead>
+          <tr><th>Category</th><th>S/XS</th><th>M</th><th>L</th><th>XL</th><th>XXL</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Women Kurti</td><td>36</td><td>38</td><td>40</td><td>42</td><td>44</td></tr>
+          <tr><td>Men T-Shirt</td><td>38</td><td>40</td><td>42</td><td>44</td><td>46</td></tr>
+          <tr><td>Men Co-ord</td><td>S</td><td>M</td><td>L</td><td>XL</td><td>XXL</td></tr>
+          <tr><td>Girls Dress</td><td colspan="5">5-6 Y / 7-8 Y / 9-10 Y / 11-12 Y / 13-14 Y</td></tr>
+          <tr><td>Boys Set</td><td colspan="5">1-2 Y / 3-4 Y / 5-6 Y / 7-8 Y / 9-10 Y</td></tr>
+        </tbody>
+      </table>
+      <button class="modal-close" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="pdp-toast" id="pdpToast"></div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/products-data.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const WA = '916205609260';
+    const params = new URLSearchParams(window.location.search);
+    const rawParam = params.get('id') || params.get('product') || params.get('cat') || params.get('category');
+    
+    let product = null;
+    let chosenSize = null;
+    let qty = 1;
+    let cart = JSON.parse(localStorage.getItem('mc_cart') || '[]');
+
+    function updateBadge() {
+      const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
+      const b = document.getElementById('cartCountBadge');
+      if (b) b.textContent = total;
+    }
+    updateBadge();
+
+    function toast(msg) {
+      const t = document.getElementById('pdpToast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._t);
+      t._t = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Find product in catalog
+    if (typeof PRODUCTS !== 'undefined' && PRODUCTS.length > 0) {
+      if (rawParam) {
+        const numId = parseInt(rawParam, 10);
+        if (!isNaN(numId)) {
+          product = PRODUCTS.find(p => p.id === numId);
+        }
+        if (!product) {
+          const cleanQuery = rawParam.toLowerCase().trim();
+          product = PRODUCTS.find(p => 
+            p.category.toLowerCase() === cleanQuery ||
+            p.category.toLowerCase().includes(cleanQuery) ||
+            p.img.toLowerCase().includes(cleanQuery) ||
+            p.name.toLowerCase().includes(cleanQuery)
+          );
+        }
+      }
+      if (!product) {
+        product = PRODUCTS[0];
+      }
+    }
+
+    if (!product) {
+      document.querySelector('.pdp-main').innerHTML = '<p style="padding:40px;text-align:center;color:#64748b;">Product not found. <a href="shop.html" style="color:#7a001e;font-weight:700;">Browse Shop →</a></p>';
+      return;
+    }
+
+    // Meta
+    document.getElementById('pageTitle').textContent = product.name + ' | Maurya Collection';
+    document.getElementById('pageDesc').content = product.name + ' - ' + (product.fabric || '') + ' at ₹' + product.price + '/- from Maurya Collection.';
+    document.getElementById('bcCat').textContent = product.categoryTitle;
+    document.getElementById('bcProduct').textContent = product.name;
+
+    // Header
+    document.getElementById('heroCatTag').textContent = (product.category || 'MAURYA').toUpperCase().replace(/-/g, ' ');
+    document.getElementById('catLabel').textContent = (product.categoryTitle || 'Collection').toUpperCase();
+    document.getElementById('ratingVal').textContent = product.rating;
+    document.getElementById('ratingCount').textContent = '(' + product.reviews + ' reviews)';
+    document.getElementById('prodTitle').textContent = product.name;
+
+    // Price
+    document.getElementById('pNow').textContent = '₹' + product.price.toLocaleString('en-IN');
+    if (product.mrp) {
+      document.getElementById('pMrp').textContent = '₹' + product.mrp.toLocaleString('en-IN');
+      const disc = Math.round((1 - product.price / product.mrp) * 100);
+      document.getElementById('pOff').textContent = disc + '% OFF';
+    }
+
+    // Specs
+    document.getElementById('specFabric').textContent = product.fabric || 'Mix of All Premium';
+    document.getElementById('specSku').textContent = 'MC-' + String(product.id).padStart(4, '0');
+
+    // Main image
+    const mainImg = document.getElementById('mainImg');
+    mainImg.src = product.img;
+    mainImg.alt = product.name;
+
+    // Thumbnails
+    const sameCat = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.filter(p => p.category === product.category) : [];
+    const gallery = [product.img, ...sameCat.filter(p => p.id !== product.id).map(p => p.img)].slice(0, 6);
+    const thumbRow = document.getElementById('thumbRow');
+    thumbRow.innerHTML = gallery.map((src, i) => `
+      <div class="thumb-item ${i === 0 ? 'active' : ''}" data-src="${src}">
+        <img src="${src}" alt="View ${i+1}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.png'" />
+      </div>`).join('');
+    thumbRow.querySelectorAll('.thumb-item').forEach(el => {
+      el.addEventListener('click', () => {
+        thumbRow.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        mainImg.src = el.dataset.src;
+      });
+    });
+
+    // Wishlist
+    const wishBtn = document.getElementById('wishBtn');
+    wishBtn.addEventListener('click', () => {
+      wishBtn.classList.toggle('active');
+      toast(wishBtn.classList.contains('active') ? 'Added to Wishlist ❤️' : 'Removed from Wishlist');
+    });
+
+    // Sizes
+    const sizes = product.sizes && product.sizes.length ? product.sizes : ['Free Size'];
+    const sizesWrap = document.getElementById('sizesWrap');
+    sizesWrap.innerHTML = sizes.map(s => `<button class="sz-btn" data-size="${s}">${s}</button>`).join('');
+    if (sizes.length === 1) { chosenSize = sizes[0]; sizesWrap.querySelector('.sz-btn').classList.add('active'); }
+    sizesWrap.querySelectorAll('.sz-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizesWrap.querySelectorAll('.sz-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        chosenSize = btn.dataset.size;
+        document.getElementById('sizeErr').style.display = 'none';
+      });
+    });
+
+    // Qty
+    const qtyNum = document.getElementById('qtyNum');
+    document.getElementById('qtyMinus').addEventListener('click', () => { if (qty > 1) qtyNum.textContent = --qty; });
+    document.getElementById('qtyPlus').addEventListener('click', () => { if (qty < 25) qtyNum.textContent = ++qty; });
+
+    // Size guide modal
+    document.getElementById('sizeGuideBtn').addEventListener('click', () => {
+      document.getElementById('sizeModal').classList.add('open');
+    });
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('sizeModal').classList.remove('open');
+    });
+    document.getElementById('sizeModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('sizeModal')) {
+        document.getElementById('sizeModal').classList.remove('open');
+      }
+    });
+
+    // Add to cart
+    function addToCart() {
+      if (!chosenSize) {
+        document.getElementById('sizeErr').style.display = 'block';
+        document.getElementById('sizesWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
+      }
+      const key = product.id + '-' + chosenSize;
+      const existing = cart.find(i => i.cartKey === key);
+      if (existing) { existing.qty += qty; }
+      else { cart.push({ id: product.id, cartKey: key, name: product.name, price: product.price, img: product.img, size: chosenSize, qty }); }
+      localStorage.setItem('mc_cart', JSON.stringify(cart));
+      updateBadge();
+      return true;
+    }
+
+    // WhatsApp
+    function openWA() {
+      if (!chosenSize) { document.getElementById('sizeErr').style.display = 'block'; return; }
+      const total = product.price * qty;
+      const msg = [
+        '🛍️ *PRODUCT ENQUIRY — Maurya Collection*',
+        '━━━━━━━━━━━━━━━━━━━',
+        '📦 *Product:* ' + product.name,
+        '🧵 *Fabric:* ' + (product.fabric || 'Premium Quality'),
+        '📏 *Size:* ' + chosenSize,
+        '🔢 *Qty:* ' + qty,
+        '💰 *Price per unit:* ₹' + product.price.toLocaleString('en-IN'),
+        '💳 *Total:* ₹' + total.toLocaleString('en-IN'),
+        '',
+        '🔗 *Page:* ' + window.location.href,
+        '━━━━━━━━━━━━━━━━━━━',
+        'Please confirm this order. Thank you! 🙏'
+      ].join('\n');
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    document.getElementById('btnBuyNow').addEventListener('click', () => { if (addToCart()) window.location.href = 'checkout.html'; });
+    document.getElementById('btnAddBag').addEventListener('click', () => {
+      if (!addToCart()) return;
+      const btn = document.getElementById('btnAddBag');
+      btn.textContent = '✓ Added to Bag!';
+      btn.style.color = '#16a34a'; btn.style.borderColor = '#16a34a';
+      toast('Added "' + product.name.slice(0, 22) + '..." (' + chosenSize + ') to Bag!');
+      setTimeout(() => { btn.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Add to Shopping Bag'; btn.style.color = ''; btn.style.borderColor = ''; }, 1600);
+    });
+    document.getElementById('btnWA').addEventListener('click', openWA);
+    document.getElementById('mBtnWA').addEventListener('click', openWA);
+    document.getElementById('mBtnBuy').addEventListener('click', () => { if (addToCart()) window.location.href = 'checkout.html'; });
+
+    // Info Cards
+    const descText = product.description || `${product.name} crafted for everyday elegance and long-lasting comfort. Showroom quality finish with premium stitching.`;
+    const featuresList = (product.keyFeatures && product.keyFeatures.length) 
+      ? product.keyFeatures.map(f => `<li>${f}</li>`).join('') 
+      : `<li>Premium ${product.fabric || 'Quality'} Fabric</li><li>Reinforced seam stitching</li><li>Breathable for all Indian seasons</li><li>Available Sizes: ${sizes.join(', ')}</li>`;
+    const careText = product.careInstructions || 'Gentle hand wash or cold machine wash. Do not bleach. Dry in shade. Iron on medium heat on reverse side.';
+
+    document.getElementById('infoCards').innerHTML = `
+      <div class="info-card"><h4>📋 Overview &amp; Styling</h4><p>${descText}</p></div>
+      <div class="info-card"><h4>✨ Key Highlights</h4><ul>${featuresList}</ul></div>
+      <div class="info-card"><h4>🧺 Care Instructions</h4><p>${careText}</p></div>
+      <div class="info-card"><h4>📦 Shipping &amp; Returns</h4><p>Dispatched within 24-48 hrs. Delivery in 5-7 business days across India. 7-day hassle-free size exchange guarantee.</p></div>`;
+
+    // Similar Products
+    const similar = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 8) : [];
+    document.getElementById('similarGrid').innerHTML = similar.map(p => `
+      <a href="product.html?id=${p.id}" class="sim-card">
+        <div class="sim-card-img"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.png'" /></div>
+        <div class="sim-card-body">
+          <div class="sim-cat">${p.categoryTitle}</div>
+          <div class="sim-name">${p.name}</div>
+          <div class="sim-price">₹${p.price.toLocaleString('en-IN')}/-</div>
+        </div>
+      </a>`).join('');
+
+  })();
+  </script>
+</body>
+</html>
