@@ -7,9 +7,9 @@
   <meta name="description" id="pageDesc" content="Shop authentic Indian ethnic wear at Maurya Collection." />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="public/favicon/maurya-collection-icon.svg" />
-  <link rel="shortcut icon" href="public/favicon/maurya-collection-icon.svg" />
-  <link rel="apple-touch-icon" href="public/images/brand/maurya-collection-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="public/images/brand/maurya-collection-icon.svg" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -584,7 +584,7 @@
           <button class="hero-wish-btn" id="wishBtn" aria-label="Wishlist">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <img id="mainImg" src="" alt="Product" onerror="this.src='public/images/brand/maurya-collection-icon.png'" />
+          <img id="mainImg" src="" alt="Product" onerror="this.src='public/images/brand/maurya-collection-icon.svg'" />
         </div>
         <div class="thumb-row" id="thumbRow"></div>
       </div>
@@ -839,7 +839,7 @@
     const thumbRow = document.getElementById('thumbRow');
     thumbRow.innerHTML = gallery.map((src, i) => `
       <div class="thumb-item ${i === 0 ? 'active' : ''}" data-src="${src}">
-        <img src="${src}" alt="View ${i+1}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.png'" />
+        <img src="${src}" alt="View ${i+1}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.svg'" />
       </div>`).join('');
     thumbRow.querySelectorAll('.thumb-item').forEach(el => {
       el.addEventListener('click', () => {
@@ -955,7 +955,7 @@
     const similar = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 8) : [];
     document.getElementById('similarGrid').innerHTML = similar.map(p => `
       <a href="product.html?id=${p.id}" class="sim-card">
-        <div class="sim-card-img"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.png'" /></div>
+        <div class="sim-card-img"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='public/images/brand/maurya-collection-icon.svg'" /></div>
         <div class="sim-card-body">
           <div class="sim-cat">${p.categoryTitle}</div>
           <div class="sim-name">${p.name}</div>
