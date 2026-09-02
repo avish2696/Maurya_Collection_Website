@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Maurya Collection — Contemporary Indian Apparel & Ethnic Wear",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp -r assets src public admin dist/ && cp index.html shop.html product.html checkout.html 404.html script.js style.css favicon.svg robots.txt sitemap.xml _redirects _headers CNAME dist/ 2>/dev/null || true"
+    "dev": "npx serve . -p 3000",
+    "build": "node build.js"
   },
   "author": "Maurya Collection",
   "license": "ISC"
