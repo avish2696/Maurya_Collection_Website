@@ -1,0 +1,10 @@
+{
+  "name": "maurya-collection-website",
+  "version": "1.0.0",
+  "description": "Maurya Collection — Contemporary Indian Apparel & Ethnic Wear",
+  "scripts": {
+    "build": "echo 'Static site - no build required'"
+  },
+  "author": "Maurya Collection",
+  "license": "ISC"
+}
