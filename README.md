@@ -231,9 +231,11 @@ X-Content-Type-Options: nosniff
 
 | Channel | Details |
 |---------|---------|
-| 📱 WhatsApp | [+91 98765 43210](https://wa.me/919876543210) |
-| 📧 Email | [mauryacollection@gmail.com](mailto:mauryacollection@gmail.com) |
-| 📍 Location | Surat, Gujarat, India |
+| 👤 Founder | **Bipin Kumar** |
+| 📱 WhatsApp / Call | [+91 62056 09260](https://wa.me/916205609260) |
+| 📧 Email | [contact@mauryacollection.com](mailto:contact@mauryacollection.com) |
+| 📍 Office Address | A/90 NSB Road, Raniganj, Searsole Rajbari, Paschim Bardhaman – 713358, West Bengal, India |
+
 
 ---
 
