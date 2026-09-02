@@ -1,0 +1,9 @@
+.git
+node_modules
+.wrangler
+package.json
+package-lock.json
+wrangler.toml
+README.md
+.gitignore
+llms.txt
