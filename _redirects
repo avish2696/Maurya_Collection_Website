@@ -1,4 +1,0 @@
-# Cloudflare Pages Clean URLs & Redirects
-/shop        /shop.html       200
-/product     /product.html    200
-/checkout    /checkout.html   200
