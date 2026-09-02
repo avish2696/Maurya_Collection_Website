@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Maurya Collection — Contemporary Indian Apparel & Ethnic Wear",
   "scripts": {
-    "dev": "npx serve . -p 3000"
+    "dev": "npx serve . -p 3000",
+    "build": "echo \"Static site - no build step required\""
   },
   "author": "Maurya Collection",
   "license": "ISC"
