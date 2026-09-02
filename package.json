@@ -2,18 +2,11 @@
   "name": "maurya-collection-website",
   "version": "1.0.0",
   "description": "Maurya Collection — Contemporary Indian Apparel & Ethnic Wear",
-  "type": "module",
   "scripts": {
-    "dev": "npx serve . -p 3000",
-    "build": "node scripts/optimize.mjs",
-    "preview": "npx serve dist -p 3001"
+    "dev": "npx serve . -p 3000"
   },
   "author": "Maurya Collection",
-  "license": "ISC",
-  "devDependencies": {
-    "clean-css-cli": "^5.6.3",
-    "sharp": "^0.35.4",
-    "terser": "^5.51.2"
-  }
+  "license": "ISC"
 }
+
 
