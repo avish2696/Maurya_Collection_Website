@@ -26,11 +26,12 @@ files.forEach(file => {
   }
 });
 
-// Create clean route aliases so /shop, /product, /checkout work seamlessly everywhere
+// Create clean route aliases so /shop, /product, /checkout, /dashboard work seamlessly everywhere
 const routes = [
   { dir: 'shop', file: 'shop.html' },
   { dir: 'product', file: 'product.html' },
-  { dir: 'checkout', file: 'checkout.html' }
+  { dir: 'checkout', file: 'checkout.html' },
+  { dir: 'dashboard', file: path.join('admin', 'dashboard.html') }
 ];
 routes.forEach(r => {
   if (fs.existsSync(r.file)) {

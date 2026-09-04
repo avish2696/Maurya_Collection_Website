@@ -545,12 +545,14 @@
 
 // ── Auth Guard ──────────────────────────────────────────────
 if (sessionStorage.getItem('mc_admin_auth') !== 'true') {
-  location.href = 'index.html';
+  window.location.href = '/admin/index.html';
 }
 
 document.getElementById('logoutBtn').addEventListener('click', () => {
   sessionStorage.removeItem('mc_admin_auth');
-  location.href = 'index.html';
+  sessionStorage.removeItem('mc_admin_user');
+  localStorage.removeItem('mc_admin_auth');
+  window.location.href = '/admin/index.html';
 });
 
 // ── Toast ───────────────────────────────────────────────────

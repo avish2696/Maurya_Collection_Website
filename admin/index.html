@@ -84,7 +84,7 @@
     <form id="loginForm">
       <div class="field">
         <label for="username">Admin Email / ID</label>
-        <input type="email" id="username" placeholder="avishkar.kumar555@gmail.com" autocomplete="username" required />
+        <input type="email" id="username" placeholder="admin@yourdomain.com" autocomplete="username" required />
       </div>
       <div class="field">
         <label for="password">Password</label>
@@ -97,23 +97,27 @@
   </div>
 
   <script>
-    // Check if already logged in
-    if (sessionStorage.getItem('mc_admin_auth') === 'true') {
-      location.href = 'dashboard.html';
-    }
+    // Clear any past session when opening the login page so login is always required
+    sessionStorage.removeItem('mc_admin_auth');
+    sessionStorage.removeItem('mc_admin_user');
+    localStorage.removeItem('mc_admin_auth');
 
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const u = document.getElementById('username').value.trim().toLowerCase();
-      const p = document.getElementById('password').value;
-      
-      // Strict Admin Authentication
-      if (u === 'avishkar.kumar555@gmail.com' && p === 'Maurya@2026') {
+      const p = document.getElementById('password').value.trim();
+
+      // Strict Admin Authentication Check
+      const validUsers = ['avishkar.kumar555@gmail.com', 'admin@mauryacollection.com', 'admin@topsun.com'];
+      const validPass = 'Maurya@2026';
+
+      if (validUsers.includes(u) && p === validPass) {
         sessionStorage.setItem('mc_admin_auth', 'true');
         sessionStorage.setItem('mc_admin_user', u);
-        location.href = 'dashboard.html';
+        window.location.href = '/admin/dashboard.html';
       } else {
         document.getElementById('errMsg').classList.add('show');
+      }
     });
   </script>
 </body>
